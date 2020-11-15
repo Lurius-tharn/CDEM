@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 13 nov. 2020 à 14:57
+-- Généré le : ven. 13 nov. 2020 à 15:59
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS `game` (
   `scoreMax` int(11) NOT NULL,
   `isInProgress` tinyint(1) NOT NULL,
   `isPublic` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idGame`)
+  `code` varchar(6) NOT NULL,
+  PRIMARY KEY (`idGame`),
+  KEY `game_ibfk_1` (`idHost`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -63,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `player_game` (
   `idGame` int(11) NOT NULL,
   `idPlayer` int(11) NOT NULL,
   `score` int(11) NOT NULL,
-  PRIMARY KEY (`idGame`,`idPlayer`)
+  PRIMARY KEY (`idGame`,`idPlayer`),
+  KEY `player_game_ibfk_2` (`idPlayer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -71,19 +74,17 @@ CREATE TABLE IF NOT EXISTS `player_game` (
 --
 
 --
--- Contraintes pour la table `player_game`
---
-ALTER TABLE `player_game`
-  ADD CONSTRAINT `player_game_ibfk_1` FOREIGN KEY (`idGame`) REFERENCES `game` (`idGame`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `player_game_ibfk_2` FOREIGN KEY (`idPlayer`) REFERENCES `player` (`idPlayer`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Contraintes pour la table `game`
 --
 ALTER TABLE `game`
   ADD CONSTRAINT `game_ibfk_1` FOREIGN KEY (`idHost`) REFERENCES `player` (`idPlayer`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-
+--
+-- Contraintes pour la table `player_game`
+--
+ALTER TABLE `player_game`
+  ADD CONSTRAINT `player_game_ibfk_1` FOREIGN KEY (`idGame`) REFERENCES `game` (`idGame`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `player_game_ibfk_2` FOREIGN KEY (`idPlayer`) REFERENCES `player` (`idPlayer`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
