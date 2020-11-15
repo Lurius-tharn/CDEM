@@ -1,5 +1,17 @@
 <?php
+function homeView(){
+    require('view/frontend/homeView.php');
 
+}
+
+function createView(){
+    require('view/frontend/createView.php');
+
+}
+function joinView(){
+    require('view/frontend/joinView.php');
+
+}
 
 
 /*
