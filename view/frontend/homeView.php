@@ -16,4 +16,4 @@
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>uj
+<?php require('template.php'); ?>
