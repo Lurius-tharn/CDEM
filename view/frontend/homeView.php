@@ -7,17 +7,18 @@
            
             <input  type="text" name="pseudo" id="pseudo"  class ="element" placeholder="PSEUDO" size="300" maxlength="10" />
   
-    <div class = "block create element" >
-        <a href = "index.php?action=create"> Créer</a>
-    </div>
+    <a class = "block create element" href = "index.php?action=create"> 
+        <p>Créer</p>
+    </a>
 
-    <div class = "block join element" >
-        <a href = "index.php?action=join"> Rejoindre</a>
-    </div>
+    <a class = "block join element" href = "index.php?action=join"   > 
+        <p>Rejoindre</p>
+    </a>
+    
 </div>
 
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require('template.php'); ?>uj
 
