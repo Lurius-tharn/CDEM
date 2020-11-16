@@ -13,9 +13,8 @@
     <header>
         <a id="logo" href="index.php"> cdem.fun</a>
         <div id="connect">
-            <div id="round">
-                <a href="Connect.php">Se connecter</a>
-            </div>
+            <div id="round"></div>
+            <a href="Connect.php">Se connecter</a>       
         </div>
     </header>
 
@@ -24,7 +23,7 @@
     </div>
 
     <footer>
-        
+
     </footer>
 </body>
 
