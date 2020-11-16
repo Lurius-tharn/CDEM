@@ -159,6 +159,7 @@ header {
   border: 2px solid rgba(177, 182, 255, 1);
 }
 
+
 /*************** Typography and text part ***************/
 a, p, ::placeholder {
   font-family: 'Montserrat', sans-serif;
@@ -171,6 +172,7 @@ a, p, ::placeholder {
 }
 
 /*************** Screen size part    ***************/
+
 
 @media all and (max-width: 1600px)
 {
