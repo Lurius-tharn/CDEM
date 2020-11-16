@@ -3,7 +3,7 @@
 
 <div id = "container2">
   <input  type="text" name="pseudo" id="pseudo"  class ="element" placeholder="PSEUDO" size="300" maxlength="10" />
-
+  
   <div class="blocks">
     <a class = "block create element" href = "index.php?action=create">
     <div class="plein"><p>Créer</p></div>
