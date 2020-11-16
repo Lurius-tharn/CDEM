@@ -6,13 +6,11 @@
 
   <div class="blocks">
     <a class = "block create element" href = "index.php?action=create">
-    <div class="plein"><p>Créer</p></div>
-      <div class="vide"></div>
+      <p>Créer</p>
     </a>
 
     <a class = "block join element" href = "index.php?action=join"   >
-      <div class="plein"><p>Rejoindre</p></div>
-      <div class="vide"></div>
+      <p>Rejoindre</p>
     </a>
   </div>
 </div>
