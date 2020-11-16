@@ -1,10 +1,13 @@
+/*************** Page part ***************/
+
 html {
   min-height: 100%;
   background: rgb(214, 223, 255);
-  background: linear-gradient(0deg, rgba(214, 223, 255, 1) 0%, rgba(214, 223, 255, 1) 45%, rgba(238, 238, 238, 1) 45%);
+  background: linear-gradient(0deg, rgba(214, 223, 255, 1) 0%, 
+    rgba(214, 223, 255, 1) 45%, rgba(238, 238, 238, 1) 45%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  overflow: scroll;
+  overflow-x: hidden;
   position: relative;
   display: flex;
 }
@@ -17,22 +20,16 @@ body {
   row-gap: 5%;
 }
 
-a, p, ::placeholder {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  text-decoration: none;
-}
 
-::placeholder {
-  color: #d5d5d5;
-}
 
+
+/*************** Header part    ***************/
 header {
   display: flex;
   justify-content: space-between;
 }
-
 #connect {
+  margin: 1em;
   width: 155px;
   background: white;
   border-radius: 30px;
@@ -71,6 +68,7 @@ header {
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
+/*************** Body and Homepage part ***************/
 
 .container{
   display: flex;
@@ -85,7 +83,7 @@ header {
   width: 70%;
   row-gap: 13%;
 }
-
+/*************** Homepage bocks part***************/
 .blocks {
   flex: auto;
   display: flex;
@@ -113,15 +111,18 @@ header {
   -o-transform: scale(1.1);
   transform: scale(1.1);
 }
+/*************** Homepage content part***************/
 
 .create {
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 40%, rgba(177, 182, 255, 1) 40%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%,
+   rgba(255, 255, 255, 1) 40%, rgba(177, 182, 255, 1) 40%);
 }
 
 .join {
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 40%, rgba(255, 198, 177, 1) 40%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, 
+  rgba(255, 255, 255, 1) 40%, rgba(255, 198, 177, 1) 40%);
 }
 
 .block p {
@@ -157,6 +158,21 @@ header {
 #pseudo:focus {
   border: 2px solid rgba(177, 182, 255, 1);
 }
+
+
+/*************** Typography and text part ***************/
+a, p, ::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+::placeholder {
+  color: #d5d5d5;
+}
+
+/*************** Screen size part    ***************/
+
 
 @media all and (max-width: 1600px)
 {
