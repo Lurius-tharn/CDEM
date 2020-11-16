@@ -6,6 +6,11 @@ html {
   background-repeat: no-repeat;
   overflow: scroll;
   position: relative;
+<<<<<<< Updated upstream
+=======
+  display: flex;
+  overflow: hidden;
+>>>>>>> Stashed changes
 }
 
 body {
