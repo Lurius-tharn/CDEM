@@ -3,7 +3,7 @@
 html {
   min-height: 100%;
   background: rgb(214, 223, 255);
-  background: linear-gradient(0deg, rgba(214, 223, 255, 1) 0%, 
+  background: linear-gradient(0deg, rgba(214, 223, 255, 1) 0%,
     rgba(214, 223, 255, 1) 45%, rgba(238, 238, 238, 1) 45%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -121,7 +121,7 @@ header {
 
 .join {
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, 
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%,
   rgba(255, 255, 255, 1) 40%, rgba(255, 198, 177, 1) 40%);
 }
 
@@ -161,7 +161,7 @@ header {
 
 
 /*************** Typography and text part ***************/
-a, p, ::placeholder {
+a, p, h1, ::placeholder {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   text-decoration: none;
