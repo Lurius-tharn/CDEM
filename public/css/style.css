@@ -1,10 +1,9 @@
-/*************** Page part ***************/
+/********************************************* Page part *********************************************/
 
 html {
   min-height: 100%;
   background: rgb(214, 223, 255);
-  background: linear-gradient(0deg, rgba(214, 223, 255, 1) 0%,
-    rgba(214, 223, 255, 1) 45%, rgba(238, 238, 238, 1) 45%);
+  background: linear-gradient(0deg, rgba(214, 223, 255, 1) 0%, rgba(214, 223, 255, 1) 60%, rgba(238, 238, 238, 1) 60%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   overflow-x: hidden;
@@ -20,40 +19,37 @@ body {
   row-gap: 5%;
 }
 
+/********************************************* Header part *********************************************/
 
-
-
-/*************** Header part    ***************/
 header {
   display: flex;
   justify-content: space-between;
 }
+
 #connect {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
   margin: 1em;
-  width: 155px;
+  width: 10%;
   background: white;
   border-radius: 30px;
-  height: 40px;
+  height: 50%;
 }
 
 #round {
-  width: 15px;
-  height: 15px;
-  padding: 6px;
-  border-radius: 100%;
+  width: 1.5vw;
+  height: 1.5vw;
+  border-radius: 50%;
   background-color: #777bff;
-  top: 6px;
-  position: relative;
-  left: 7px;
 }
 
 #connect a {
-  position: relative;
   text-decoration: none;
   font-size: 1rem;
   opacity: 1;
   outline: none;
-  left: 25px;
   color: #000;
   white-space: nowrap;
 }
@@ -68,9 +64,41 @@ header {
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-/*************** Body and Homepage part ***************/
+@media all and (max-width: 1445px) {
+  #connect {
+    width: 13%;
+  }
+}
 
-.container{
+@media all and (max-width: 1100px) {
+  #connect {
+    width: 16%;
+  }
+}
+
+@media all and (max-width: 900px) {
+  #connect {
+    width: 19%;
+  }
+}
+
+@media all and (max-width: 700px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  #connect {
+    display: none;
+  }
+  #logo {
+    font-size: 5rem;
+    padding: 0;
+  }
+}
+
+/********************************************* Body and Homepage part *********************************************/
+
+.container {
   display: flex;
   justify-content: center;
   flex: 1;
@@ -83,7 +111,15 @@ header {
   width: 70%;
   row-gap: 13%;
 }
-/*************** Homepage bocks part***************/
+
+@media all and (max-width: 700px) {
+  #container2 {
+    width: 100%;
+  }
+}
+
+/********************************************* Homepage blocks part *********************************************/
+
 .blocks {
   flex: auto;
   display: flex;
@@ -100,7 +136,6 @@ header {
   box-shadow: 0px 7px rgba(0, 0, 255, .2);
   transition-duration: 1000ms;
   transform: scale(1);
-  margin-bottom: 5%;
 }
 
 .block:hover {
@@ -111,18 +146,29 @@ header {
   -o-transform: scale(1.1);
   transform: scale(1.1);
 }
-/*************** Homepage content part***************/
+
+@media all and (max-width: 700px) {
+  .blocks{
+    flex-direction: column;
+    align-items: center;
+    column-gap: 0;
+    row-gap: 8%;
+  }
+  .block {
+    width: 70%;
+  }
+}
+
+/********************************************* Homepage content part *********************************************/
 
 .create {
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%,
-   rgba(255, 255, 255, 1) 40%, rgba(177, 182, 255, 1) 40%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 40%, rgba(177, 182, 255, 1) 40%);
 }
 
 .join {
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%,
-  rgba(255, 255, 255, 1) 40%, rgba(255, 198, 177, 1) 40%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 40%, rgba(255, 198, 177, 1) 40%);
 }
 
 .block p {
@@ -138,6 +184,7 @@ header {
   display: flex;
   justify-content: center;
 }
+
 .block .vide {
   flex: 6;
 }
@@ -152,16 +199,20 @@ header {
   color: black;
   font-size: 2rem;
   background-color: white;
-  padding: 10px 0px 10px;
+  padding: 15px 0px 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 #pseudo:focus {
   border: 2px solid rgba(177, 182, 255, 1);
+  outline: none;
 }
 
+/********************************************* Typography and text part *********************************************/
 
-/*************** Typography and text part ***************/
-a, p, h1, ::placeholder {
+a, p, ::placeholder {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   text-decoration: none;
@@ -171,25 +222,21 @@ a, p, h1, ::placeholder {
   color: #d5d5d5;
 }
 
-/*************** Screen size part    ***************/
+/********************************************* Screen size part *********************************************/
 
-
-@media all and (max-width: 1600px)
-{
+@media all and (max-width: 1600px) {
   .block p {
     font-size: 3em;
   }
 }
 
-@media all and (max-width: 1024px)
-{
+@media all and (max-width: 1024px) {
   .block p {
     font-size: 2em;
   }
 }
 
-@media all and (max-width: 700px)
-{
+@media all and (max-width: 700px) {
   .block p {
     font-size: 1.5em;
   }
