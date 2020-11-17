@@ -6,9 +6,9 @@ html {
   background: linear-gradient(0deg, rgba(214, 223, 255, 1) 0%, rgba(214, 223, 255, 1) 60%, rgba(238, 238, 238, 1) 60%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  overflow-x: hidden;
   position: relative;
   display: flex;
+  overflow: hidden scroll;
 }
 
 body {
@@ -17,6 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 5%;
+  min-height: 768px;
 }
 
 /********************************************* Header part *********************************************/
@@ -156,6 +157,9 @@ header {
   }
   .block {
     width: 70%;
+  }
+  .block:last-child{
+    margin-bottom: 50px;
   }
 }
 

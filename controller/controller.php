@@ -1,9 +1,12 @@
 <?php
+function connectView(){
+    require('view/frontend/connectView.php');
+
+}
 function homeView(){
     require('view/frontend/homeView.php');
 
 }
-
 function createView(){
     require('view/frontend/createView.php');
 

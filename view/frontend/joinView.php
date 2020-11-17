@@ -1,7 +1,7 @@
 <?php $title = "Rejoindre" ?>
 <?php ob_start(); ?>
 
-<div id = "partyBlock" >
+<div id="partyBlock">
   <div class="title">
     <h1>Rejoindre une partie</h1>
   </div>
@@ -34,4 +34,5 @@
   </button>
 </div>
 <?php $content = ob_get_clean(); ?>
+<?php $css = "<link href=\"public/css/game.css?v=<?php echo time(); ?>\" rel=\"stylesheet\" />" ?>
 <?php require('template.php'); ?>
