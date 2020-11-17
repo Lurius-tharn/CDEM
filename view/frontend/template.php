@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <link href="public/css/style.css?v=<?php echo time(); ?>" rel="stylesheet" />
+    <link href="public/css/game.css?v=<?php echo time(); ?>" rel="stylesheet" />
+
 </head>
 
 

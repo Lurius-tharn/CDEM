@@ -1,0 +1,17 @@
+#partyBlock{
+  
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    flex-wrap: wrap;
+    
+    flex: 0.75;
+    background-color: white;
+    height: 65vh;
+    border-style: none;
+    border-radius: 3em;
+    box-shadow: 0px 7px rgba(77, 77, 104, 0.2);
+     
+      
+}
+
