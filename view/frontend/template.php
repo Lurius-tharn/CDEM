@@ -5,6 +5,9 @@
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <link href="public/css/style.css?v=<?php echo time(); ?>" rel="stylesheet" />
+    <link href="public/css/game.css?v=<?php echo time(); ?>" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 </head>
 
 
