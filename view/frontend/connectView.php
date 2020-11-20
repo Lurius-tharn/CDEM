@@ -1,40 +1,38 @@
+
 <?php $title = "Se connecter" ?>
 <?php ob_start(); ?>
 
-<div class=container style="text-align:center">
-
-    <div class="block" style="padding:10em" style="margin:1em">
-        <?php
-        if (isset($_GET['incorrect'])) {
-            if ($_GET['incorrect'] == 1) {
-                echo "<span class=err>Identifiant non reconnu.</span>";
-            } else {
-                echo "<span class=err>Mot de passe incorrect.</span>";
-            }
-        }
-        ?>
-
-        <form action="co.php" method="post">
-            <br>
-            Entrez votre identifiant (email):
-            <br>
-            <input type="text" name=pseudo>
-
-            <br>
-            Entrez votre mot de passe:
-            <br>
-            <input type="password" name=mdp>
-            <br>
-            <input type=submit>
-        </form>
-
-        <br>
-        Pas encore de compte ?
-        <br>
-
-        <a>créer un compte !</a>
+<div id="container2">
+  <div class="blocks">
+    <div class="block">
+        <div class="fond">
+            <h1>Déjà membre?</h1>
+            Pseudo
+            <input type="text" name="pseudo" id="pseudo" class="element" placeholder="Votre Pseudo" size="255" maxlength="10" />
+            Mot de passe
+            <input type="text" name="pseudo" id="pseudo" class="element" placeholder="8 caractères minimum" size="255" maxlength="10" />
+            <a>mot de passe oublié?</a>
+        </div>
+        <button class="button" type="button" name="button">
+            <p>Se connecter</p>
+        </button>
     </div>
+     <div class="block">
+        <div class="fond">
+            <h1>Pas encore membre?</h1>
+            Email
+            <input type="text" name="pseudo" id="pseudo" class="element" placeholder="Votre Email" size="255" maxlength="10" />
+            Pseudo
+            <input type="text" name="pseudo" id="pseudo" class="element" placeholder="Votre Pseudo" size="255" maxlength="10" />
+            Mot de passe
+            <input type="text" name="pseudo" id="pseudo" class="element" placeholder="8 caractères minimum" size="255" maxlength="10" />
+        </div>
+        <button class="button" type="button" name="button">
+            <p>S'inscrire</p>
+        </button>
+    </div>
+  </div>
 </div>
-
 <?php $content = ob_get_clean(); ?>
+<?php $css = "<link href=\"co.css?v=<?php echo time(); ?>\" rel=\"stylesheet\" />" ?>
 <?php require('template.php'); ?>
