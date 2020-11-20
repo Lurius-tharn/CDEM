@@ -1,0 +1,95 @@
+/*********************************************   Connexion page part    *********************************************/
+
+.connectBlocks {
+  display: flex;
+  column-gap: 8%;
+  width: 90%;
+}
+
+@media all and (max-width: 700px) {
+  .connectBlocks {
+    width: 90%;
+    flex-direction: column;
+    column-gap: 0;
+    justify-content: space-between;
+  }
+}
+
+.connectblock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4%;
+  flex: 1;
+}
+
+.connectForm {
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  border-radius: 30px;
+  text-transform: bold;
+  box-shadow: 0px 7px rgba(0, 0, 255, .2);
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.connectForm h1 {
+  color: black;
+  text-align: center;
+  font-size: 3.5em;
+}
+
+.inputBlocks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  width: 80%;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+input {
+  border: 0.4em solid #777bff;
+  border-radius: 10em;
+  padding: 1%;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+}
+
+.inputBlock h2{
+  color: #777bff;
+  font-size: 2em;
+}
+
+.inputBlock a{
+  color: #777bff;
+  font-size: 1em;
+  margin-top: 3%;
+}
+
+.button {
+  border: none;
+  background-color: #2ecc71;
+  box-shadow: 0px 7px rgba(46, 204, 113, .2);
+  color: #ffffff;
+  border-radius: 10em;
+  text-transform: uppercase;
+  flex: 1;
+  outline: none;
+}
+
+.button p {
+  margin: auto;
+  text-align: center;
+  font-size: 3em;
+  outline: none;
+}
