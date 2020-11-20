@@ -1,11 +1,9 @@
-#partyBlock{
+#partyBlock {
   display: flex;
   justify-content: center;
   align-items: center;
- 
   flex-wrap: wrap;
   flex-direction: column;
-
   flex: 0.75;
   background-color: white;
   height: 65vh;
@@ -13,40 +11,53 @@
   border-radius: 3em;
   box-shadow: 0px 7px rgba(77, 77, 104, 0.2);
 }
-.title{
+
+.title {
   margin-bottom: 1em;
 }
-.choice{
+
+.choice {
   margin-bottom: 1em;
 }
-.buttonChoice{
+
+.buttonChoice {
   border: none;
   background-color: #777bff;
   height: 7em;
   width: 35em;
+  outline: none;
 }
-.buttonChoice p{
+
+.buttonChoice p {
   font-size: 4em;
   margin: auto;
   color: #ffffff;
 }
-.buttonChoice:nth-child(1){
+
+.buttonChoice:nth-child(1) {
   border-radius: 10em 0 0 10em;
 }
-.buttonChoice:nth-child(2){
+
+.buttonChoice:nth-child(2) {
   border-radius: 0 10em 10em 0;
 }
 
-.notClick{
+button {
+  outline: none;
+}
+
+.notClick {
   transition: 1000ms;
   opacity: 0.5;
 }
-.code{
+
+.code {
   display: flex;
   align-items: center;
   margin-top: 1em;
 }
-.codeText{
+
+.codeText {
   background-color: #777bff;
   height: 5.5em;
   width: 25em;
@@ -56,12 +67,14 @@
   justify-content: center;
   margin-right: 5em;
 }
-.codeText p{
+
+.codeText p {
   font-size: 2.5em;
   color: #ffffff;
   text-transform: uppercase;
 }
-.codeInput{
+
+.codeInput {
   background-color: #777bff;
   height: 5em;
   width: 25em;
@@ -70,7 +83,8 @@
   align-items: center;
   justify-content: center;
 }
-.codeInput input{
+
+.codeInput input {
   height: 80%;
   width: 95%;
   border: none;
@@ -81,14 +95,16 @@
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
 }
-.control{
+
+.control {
   display: flex;
   position: absolute;
   top: 85vh;
   left: 50%;
   transform: translateX(-50%);
 }
-.control button{
+
+.control button {
   border: none;
   background-color: #777bff;
   height: 7em;
@@ -96,28 +112,30 @@
   border-radius: 10em;
   text-transform: uppercase;
 }
-.control button:nth-child(1){
+
+.control button:nth-child(1) {
   background-color: #e74c3c;
-  box-shadow: 0px 7px rgba(231,76,60, .2);
+  box-shadow: 0px 7px rgba(231, 76, 60, .2);
   width: 20em;
   margin-right: 10em;
 }
-.control button:nth-child(2){
+
+.control button:nth-child(2) {
   background-color: #2ecc71;
-  box-shadow: 0px 7px rgba(46,204,113 , .2);
+  box-shadow: 0px 7px rgba(46, 204, 113, .2);
   width: 35em;
 }
-.control button p{
+
+.control button p {
   font-size: 2em;
 }
 
-.hidden{
+.hidden {
   transition: 1000ms;
   display: none;
- 
 }
 
-.random{
+.random {
   width: 35em;
   border-radius: 0.5em;
   border: none;
@@ -125,19 +143,17 @@
   height: 5.5em;
   box-shadow: 0px 7px #777cff27;
   display: flex;
-
   bottom: 50%;
-  
 }
-.random a{
+
+.random a {
   color: white;
   font-size: 1em;
   text-transform: uppercase;
   margin: auto;
 }
 
-.Scrollbar{
- 
+.Scrollbar {
   height: 5em;
   width: 25em;
   border-radius: 10em;
@@ -145,14 +161,16 @@
   align-items: center;
   justify-content: center;
 }
-.HScrollbar{
+
+.HScrollbar {
   background-color: #707070;
-height: 0.5em;
-width: 20em;
-top: 50%;
-border-radius: 1em;
+  height: 0.5em;
+  width: 20em;
+  top: 50%;
+  border-radius: 1em;
 }
-.Scrollpoint{
+
+.Scrollpoint {
   height: 1.5em;
   width: 1.5em;
   position: relative;
@@ -160,108 +178,96 @@ border-radius: 1em;
   background-color: #6c70e2;
   left: var(--mouse-x);
   bottom: 100%;
-  
-
 }
 
-.scrollValue{
+.scrollValue {
   padding: 0 0 3em 1em;
   position: absolute;
 }
-.LeftValue{
-  width: 0;
-    height: 0;
-    
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    
-    border-right: 20px solid #6c70e2;
-}
-.RightValue{
+
+.LeftValue {
   width: 0;
   height: 0;
-  
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-  
+  border-right: 20px solid #6c70e2;
+}
+
+.RightValue {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
   border-left: 20px solid #6c70e2;
 }
-.RightValue:hover,.LeftValue:hover{
+
+.RightValue:hover, .LeftValue:hover {
   transition: 1000ms;
   transform: scale(1.1);
 }
 
-
 @media all and (max-width: 1280px) {
-  .title{
+  .title {
     font-size: 1em;
     margin-bottom: 0.5em;
   }
-
-  #partyBlock{
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   flex-direction: column;
+  #partyBlock {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
     flex: 0.75;
-   
   }
-  .random{
+  .random {
     width: 100%;
     height: 100%;
     bottom: 13%;
     box-shadow: 0px 2px #777cff27;
-
-  }.random a{
+  }
+  .random a {
     font-size: 0.7em;
     margin: auto;
   }
-  .choice{
+  .choice {
     width: 90%;
     padding: auto;
   }
-  .buttonChoice{
-    width:45%;
+  .buttonChoice {
+    width: 45%;
     height: 90%;
     padding: 1em;
-    
   }
   .buttonChoice p {
     font-size: 3em;
-    
   }
-  .code{
+  .code {
     width: 90%;
     margin-top: 0.5em;
-  
   }
-  .codeText{
+  .codeText {
     width: 50%;
     height: 50%;
     margin-right: 2em;
   }
-  .codeText p{
+  .codeText p {
     font-size: 1em;
   }
-  .Scrollbar{
+  .Scrollbar {
     width: 45%;
   }
-  .control{
+  .control {
     margin-top: 1em;
     width: 90%;
   }
-  .codeInput{
+  .codeInput {
     height: 90%;
     width: 50%;
-    
-
   }
-  .codeInput input{
+  .codeInput input {
     height: 90%;
-     width: 95%;
-     font-size: 1em;
+    width: 95%;
+    font-size: 1em;
   }
-  
 }
