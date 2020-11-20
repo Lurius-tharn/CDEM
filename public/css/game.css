@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
+ 
   flex-wrap: wrap;
   flex-direction: column;
 
@@ -14,10 +14,10 @@
   box-shadow: 0px 7px rgba(77, 77, 104, 0.2);
 }
 .title{
-  margin-bottom: 4em;
+  margin-bottom: 1em;
 }
 .choice{
-  margin-bottom: 4em;
+  margin-bottom: 1em;
 }
 .buttonChoice{
   border: none;
@@ -36,12 +36,15 @@
 .buttonChoice:nth-child(2){
   border-radius: 0 10em 10em 0;
 }
-.hidden{
+
+.notClick{
+  transition: 1000ms;
   opacity: 0.5;
 }
 .code{
   display: flex;
   align-items: center;
+  margin-top: 1em;
 }
 .codeText{
   background-color: #777bff;
@@ -60,7 +63,7 @@
 }
 .codeInput{
   background-color: #777bff;
-  height: 5.5em;
+  height: 5em;
   width: 25em;
   border-radius: 10em;
   display: flex;
@@ -106,4 +109,159 @@
 }
 .control button p{
   font-size: 2em;
+}
+
+.hidden{
+  transition: 1000ms;
+  display: none;
+ 
+}
+
+.random{
+  width: 35em;
+  border-radius: 0.5em;
+  border: none;
+  background-color: #6c70e2;
+  height: 5.5em;
+  box-shadow: 0px 7px #777cff27;
+  display: flex;
+
+  bottom: 50%;
+  
+}
+.random a{
+  color: white;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.Scrollbar{
+ 
+  height: 5em;
+  width: 25em;
+  border-radius: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.HScrollbar{
+  background-color: #707070;
+height: 0.5em;
+width: 20em;
+top: 50%;
+border-radius: 1em;
+}
+.Scrollpoint{
+  height: 1.5em;
+  width: 1.5em;
+  position: relative;
+  border-radius: 100em;
+  background-color: #6c70e2;
+  left: var(--mouse-x);
+  bottom: 100%;
+  
+
+}
+
+.scrollValue{
+  padding: 0 0 3em 1em;
+  position: absolute;
+}
+.LeftValue{
+  width: 0;
+    height: 0;
+    
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    
+    border-right: 20px solid #6c70e2;
+}
+.RightValue{
+  width: 0;
+  height: 0;
+  
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  
+  border-left: 20px solid #6c70e2;
+}
+.RightValue:hover,.LeftValue:hover{
+  transition: 1000ms;
+  transform: scale(1.1);
+}
+
+
+@media all and (max-width: 1280px) {
+  .title{
+    font-size: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  #partyBlock{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   flex-direction: column;
+    flex: 0.75;
+   
+  }
+  .random{
+    width: 100%;
+    height: 100%;
+    bottom: 13%;
+    box-shadow: 0px 2px #777cff27;
+
+  }.random a{
+    font-size: 0.7em;
+    margin: auto;
+  }
+  .choice{
+    width: 90%;
+    padding: auto;
+  }
+  .buttonChoice{
+    width:45%;
+    height: 90%;
+    padding: 1em;
+    
+  }
+  .buttonChoice p {
+    font-size: 3em;
+    
+  }
+  .code{
+    width: 90%;
+    margin-top: 0.5em;
+  
+  }
+  .codeText{
+    width: 50%;
+    height: 50%;
+    margin-right: 2em;
+  }
+  .codeText p{
+    font-size: 1em;
+  }
+  .Scrollbar{
+    width: 45%;
+  }
+  .control{
+    margin-top: 1em;
+    width: 90%;
+  }
+  .codeInput{
+    height: 90%;
+    width: 50%;
+    
+
+  }
+  .codeInput input{
+    height: 90%;
+     width: 95%;
+     font-size: 1em;
+  }
+  
 }
