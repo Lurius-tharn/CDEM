@@ -1,35 +1,92 @@
+/********************************************* Page part *********************************************/
+
+.formCreate, .joinPage {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  row-gap: 4%;
+}
+
+@media all and (max-width: 1100px) {
+  .formCreate, .joinPage {
+    width: 90%;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .formCreate, .joinPage {
+    width: 100%;
+  }
+}
+
+/****************************************** PartyBlock part ******************************************/
+
 #partyBlock {
+  flex: 8;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
-  flex: 0.75;
   background-color: white;
-  height: 65vh;
   border-style: none;
   border-radius: 3em;
   box-shadow: 0px 7px rgba(77, 77, 104, 0.2);
 }
 
-.title {
-  margin-bottom: 1em;
+#partyBlock>h1 {
+  font-weight: 800;
+  font-size: 3em;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 3%;
+}
+
+@media all and (max-width: 700px) {
+  #partyBlock {
+    border-radius: 0;
+  }
+  #partyBlock>h1 {
+    font-size: 2.5em;
+  }
+}
+
+.choices {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 60%;
+}
+
+@media all and (max-width: 1100px) {
+  .choices {
+    width: 80%;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .choices {
+    width: 90%;
+  }
 }
 
 .choice {
-  margin-bottom: 1em;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .buttonChoice {
+  width: 100%;
+  outline: none;
   border: none;
   background-color: #777bff;
-  height: 7em;
-  width: 35em;
-  outline: none;
+  padding: 3%;
+  cursor: pointer;
 }
 
 .buttonChoice p {
-  font-size: 4em;
+  font-size: 3em;
   margin: auto;
   color: #ffffff;
 }
@@ -42,10 +99,6 @@
   border-radius: 0 10em 10em 0;
 }
 
-button {
-  outline: none;
-}
-
 .notClick {
   transition: 1000ms;
   opacity: 0.5;
@@ -54,135 +107,66 @@ button {
 .code {
   display: flex;
   align-items: center;
-  margin-top: 1em;
+  column-gap: 5%;
 }
 
-.codeText {
-  background-color: #777bff;
-  height: 5.5em;
-  width: 25em;
-  border-radius: 10em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 5em;
-}
-
-.codeText p {
-  font-size: 2.5em;
-  color: #ffffff;
-  text-transform: uppercase;
-}
-
-.codeInput {
-  background-color: #777bff;
-  height: 5em;
-  width: 25em;
-  border-radius: 10em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.codeInput input {
-  height: 80%;
-  width: 95%;
-  border: none;
-  border-radius: 10em;
+.code>p {
+  margin: 0;
+  flex: 1.4;
   text-align: center;
-  font-size: 2em;
-  font-weight: 800;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-}
-
-.control {
-  display: flex;
-  position: absolute;
-  top: 85vh;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.control button {
-  border: none;
   background-color: #777bff;
-  height: 7em;
-  color: #ffffff;
   border-radius: 10em;
-  text-transform: uppercase;
+  font-size: 2.5em;
+  padding: 3%;
+  color: #ffffff;
 }
 
-.control button:nth-child(1) {
-  background-color: #e74c3c;
-  box-shadow: 0px 7px rgba(231, 76, 60, .2);
-  width: 20em;
-  margin-right: 10em;
+@media all and (max-width: 700px) {
+  .code>p {
+    font-size: 2em;
+  }
 }
 
-.control button:nth-child(2) {
-  background-color: #2ecc71;
-  box-shadow: 0px 7px rgba(46, 204, 113, .2);
-  width: 35em;
-}
-
-.control button p {
-  font-size: 2em;
-}
-
-.hidden {
-  transition: 1000ms;
-  display: none;
-}
-
-.random {
-  width: 35em;
-  border-radius: 0.5em;
-  border: none;
-  background-color: #6c70e2;
-  height: 5.5em;
-  box-shadow: 0px 7px #777cff27;
-  display: flex;
-  bottom: 50%;
-}
-
-.random a {
-  color: white;
-  font-size: 1em;
-  text-transform: uppercase;
-  margin: auto;
-}
+/****************************************** Scrollbar part ******************************************/
 
 .Scrollbar {
-  height: 5em;
-  width: 25em;
+  flex: 2;
   border-radius: 10em;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.HScrollbar {
+.slider {
+  z-index: 2;
+  -webkit-appearance: none;
   background-color: #707070;
-  height: 0.5em;
-  width: 20em;
-  top: 50%;
-  border-radius: 1em;
+  width: 100%;
+  height: 1em;
+  outline: none;
 }
 
-.Scrollpoint {
-  height: 1.5em;
-  width: 1.5em;
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 3em;
+  width: 3em;
   position: relative;
   border-radius: 100em;
   background-color: #6c70e2;
   left: var(--mouse-x);
   bottom: 100%;
+  outline: none;
+}
+
+.slider::-moz-range-thumb {
+  border-radius: 100em;
+  background-color: #6c70e2;
 }
 
 .scrollValue {
   padding: 0 0 3em 1em;
   position: absolute;
+  font-size: 2em;
 }
 
 .LeftValue {
@@ -206,68 +190,107 @@ button {
   transform: scale(1.1);
 }
 
-@media all and (max-width: 1280px) {
-  .title {
-    font-size: 1em;
-    margin-bottom: 0.5em;
-  }
-  #partyBlock {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    flex: 0.75;
-  }
-  .random {
-    width: 100%;
-    height: 100%;
-    bottom: 13%;
-    box-shadow: 0px 2px #777cff27;
-  }
-  .random a {
-    font-size: 0.7em;
-    margin: auto;
-  }
-  .choice {
+/******************************************** Input part ********************************************/
+
+.inputBlock {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputBlock input {
+  font-size: 2em;
+  border: 0.4em solid #777bff;
+  border-radius: 10em;
+  padding: 1%;
+  text-align: center;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+}
+
+.hidden {
+  transition: 1000ms;
+  display: none;
+}
+
+.random {
+  flex: 1;
+  padding: 3%;
+  border-radius: 0.5em;
+  border: none;
+  background-color: #6c70e2;
+  box-shadow: 0px 7px #777cff27;
+  display: flex;
+}
+
+.random a {
+  color: white;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+/******************************************** Button part ********************************************/
+
+.buttons {
+  flex: 1;
+  display: flex;
+  width: 80%;
+  column-gap: 8%;
+  margin: auto;
+}
+
+.button {
+  border: none;
+  background-color: #2ecc71;
+  box-shadow: 0px 7px rgba(46, 204, 113, .2);
+  color: #ffffff;
+  border-radius: 10em;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+}
+
+.button p {
+  margin: auto;
+  text-align: center;
+  font-size: 3em;
+  outline: none;
+}
+
+.buttons button:nth-child(1) {
+  flex: 1;
+  background-color: #e74c3c;
+  box-shadow: 0px 7px rgba(231, 76, 60, .2);
+}
+
+.buttons button:nth-child(2) {
+  flex: 2;
+  background-color: #2ecc71;
+  box-shadow: 0px 7px rgba(46, 204, 113, .2);
+}
+
+@media all and (max-width: 1100px) {
+  .buttons {
     width: 90%;
-    padding: auto;
+    column-gap: 6%;
   }
-  .buttonChoice {
-    width: 45%;
-    height: 90%;
-    padding: 1em;
-  }
-  .buttonChoice p {
-    font-size: 3em;
-  }
-  .code {
-    width: 90%;
-    margin-top: 0.5em;
-  }
-  .codeText {
-    width: 50%;
-    height: 50%;
-    margin-right: 2em;
-  }
-  .codeText p {
-    font-size: 1em;
-  }
-  .Scrollbar {
-    width: 45%;
-  }
-  .control {
-    margin-top: 1em;
-    width: 90%;
-  }
-  .codeInput {
-    height: 90%;
-    width: 50%;
-  }
-  .codeInput input {
-    height: 90%;
+}
+
+@media all and (max-width: 900px) {
+  .buttons {
     width: 95%;
-    font-size: 1em;
+  }
+  .button p {
+    font-size: 2.5em;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .buttons {
+    column-gap: 4%;
+    width: 98%;
   }
 }

@@ -9,6 +9,8 @@ if (isset($_GET['action'])) {
         createView();
     } else if ($_GET['action'] == 'join') {
         joinView();
+    } else if ($_GET['action'] == 'createParty') {
+        CreatePartyView();
     }
 } else {
     homeView();

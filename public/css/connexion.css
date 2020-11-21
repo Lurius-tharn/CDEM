@@ -6,12 +6,17 @@
   width: 90%;
 }
 
-@media all and (max-width: 700px) {
+@media all and (max-width: 1250px) {
   .connectBlocks {
     width: 90%;
     flex-direction: column;
     column-gap: 0;
-    justify-content: space-between;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .connectBlocks {
+    width: 100%;
   }
 }
 
@@ -34,10 +39,39 @@
   align-items: center;
 }
 
+@media all and (max-width: 700px) {
+  .connectForm {
+    border-radius: 0;
+  }
+}
+
 .connectForm h1 {
   color: black;
   text-align: center;
   font-size: 3.5em;
+}
+
+@media all and (max-width: 1650px) {
+  .connectForm h1 {
+    font-size: 3em;
+  }
+}
+@media all and (max-width: 1400px) {
+  .connectForm h1 {
+    font-size: 2.5em;
+  }
+}
+
+@media all and (max-width: 1250px) {
+  .connectForm h1 {
+    font-size: 3.5em;
+  }
+}
+
+@media all and (max-width: 950px) {
+  .connectForm h1 {
+    font-size: 3em;
+  }
 }
 
 .inputBlocks {
@@ -85,6 +119,7 @@ input {
   text-transform: uppercase;
   flex: 1;
   outline: none;
+  cursor: pointer;
 }
 
 .button p {
@@ -92,4 +127,35 @@ input {
   text-align: center;
   font-size: 3em;
   outline: none;
+}
+
+@media all and (max-width: 700px) {
+  .button {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media all and (max-height: 1050px) {
+  input {
+    font-size: 1.5em;
+  }
+  .inputBlock h2{
+    font-size: 1.5em;
+  }
+  .button p {
+    font-size: 2.5em;
+  }
+}
+
+@media all and (max-height: 850px) {
+  input {
+    font-size: 1.2em;
+  }
+  .inputBlock h2{
+    font-size: 1.2em;
+  }
+  .button p {
+    font-size: 2.3em;
+  }
 }

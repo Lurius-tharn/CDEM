@@ -15,7 +15,12 @@ function joinView(){
     require('view/frontend/joinView.php');
 
 }
-
+ 
+ function CreatePartyView()
+{
+    echo $_POST['Titre'];
+   require('view/frontend/Game.php');
+}
 
 /*
 Fonction pour générer un code de partiealéatoire
