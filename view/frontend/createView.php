@@ -1,6 +1,4 @@
-<?php
-session_start(); // start up your PHP session! 
-?>
+
 
 <?php $title = "Créer" ?>
 <?php ob_start(); ?>
@@ -12,18 +10,18 @@ session_start(); // start up your PHP session!
 
     <div class="choices">
       <div class="choice">
-        <button class="buttonChoice" type="button" id="Privé" onclick="buttonClicked('Privé')">
+        <button class="buttonChoice" type="button" id="Privé" onclick="buttonClicked('Privé');">
           <p>Privé</p>
         </button>
-        <button class="buttonChoice " type="button" id="Public" onclick="buttonClicked('Public')">
+        <button class="buttonChoice "   type="button" id="Public" onclick="buttonClicked('Public');">
           <p>Public</p>
         </button>
       </div>
-
+      <input type = "hidden" id = "hiddenBool" name="boolParty" value ="Privé"></input>
       <div class="code choice">
         <p>Joueurs</p>
         <div class="Scrollbar">
-          <input type="range" min="3" max="10" class="slider" id="ScrollPlayers" oninput="ScrollValue('ScrollPlayers','ValuePlayers')" autocomplete="off">
+          <input type="range" name ="Players" min="3" max="10" class="slider" id="ScrollPlayers" oninput="ScrollValue('ScrollPlayers','ValuePlayers')" autocomplete="off">
           <p id="ValuePlayers" class="scrollValue">6</p>
         </div>
       </div>
@@ -31,7 +29,7 @@ session_start(); // start up your PHP session!
       <div class="code choice">
         <p>Score</p>
         <div class="Scrollbar">
-          <input name="Titre" type="range" min="50" step="25" max="200" value="100" class="slider" id="ScrollScore" oninput="ScrollValue('ScrollScore','ValueScore')" autocomplete="off">
+          <input name="Score" type="range" min="50" step="25" max="200" value="100" class="slider" id="ScrollScore" oninput="ScrollValue('ScrollScore','ValueScore')" autocomplete="off">
           <p id="ValueScore" class="scrollValue">125</p>
         </div>
       </div>
@@ -43,7 +41,7 @@ session_start(); // start up your PHP session!
     <button class="button" type="button" name="button" onclick="window.location.href='index.php';">
       <p>Retour</p>
     </button>
-    <button class="button" type="submit" name="button" onclick="window.location.href='index.php?action=createParty&varia';">
+    <button class="button" type="submit" name="button">
       <p>Créer</p>
     </button>
   </div>

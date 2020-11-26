@@ -3,14 +3,19 @@ function buttonClicked(ClickedButton)
 {
     var privateButton = document.getElementById("Privé");
     var publicButton = document.getElementById("Public");
+    var boolPArty = document.getElementById("hiddenBool");
     if (ClickedButton== "Privé") {
         privateButton.classList.remove("notClick");
         publicButton.classList.add("notClick");
+        
     }if (ClickedButton == "Public" ) {
         privateButton.classList.add("notClick");
      publicButton.classList.remove("notClick");
     }
+    boolPArty.value  =ClickedButton;
 }
+
+
 
 function buttonChange( button) 
 {
@@ -46,7 +51,16 @@ function ScrollValue(Scroll, Value) {
 
 }
 
-
+function PseudoValidator(liens) {
+    var pseudo =document.getElementById('pseudo');
+    if(pseudo.value == null){
+        pseudo.style.backgroundColor ='red';
+    }else{
+        var link =this.href='index.php?action='+liens+'&pseudo='+pseudo.value;
+        return link;
+    }
+    
+}
 
 
 window.addEventListener("load",function(){
