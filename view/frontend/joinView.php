@@ -15,6 +15,7 @@
           <p>Public</p>
         </button>
       </div>
+      <input type = "hidden" id = "hiddenBool" name="boolParty" value ="Privé"></input>
 
       <div id="private" class="choice">
         <div class="code choice">
@@ -40,8 +41,8 @@
     <button class="button" type="button" name="button" onclick="window.location.href='index.php';">
       <p>Retour</p>
     </button>
-    <button class="button" type="submit" name="button" onclick="window.location.href='index.php?action=createParty&varia';">
-      <p>Créer</p>
+    <button class="button" type="submit" name="button" onclick="window.location.href='index.php';">
+      <p>Rejoindre</p>
     </button>
   </div>
 </div>

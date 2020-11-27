@@ -8,18 +8,13 @@
             <h1>Déjà membre ?</h1>
             <div class="inputBlocks">
                 <div class="inputBlock">
-<<<<<<< Updated upstream
-                    <h2>Pseudo</h2>
-                    <input type="text" name="pseudo" id="pseudoCon" class="element" placeholder="Votre Pseudo" maxlength="30" />
-=======
                     <h2>Email</h2>
                     <input type="text" name="emailCon" class="element" placeholder="Votre Email" maxlength="255" />
->>>>>>> Stashed changes
                 </div>
                 <div class="inputBlock">
                     <h2>Mot de passe</h2>
-                    <input type="text" name="pwd" id="pwdCon" class="element" placeholder="8 caractères min." maxlength="255" />
-                    <a href="">Mot de passe oublié ?</a>
+                    <input type="password" name="pwdCon" class="element" placeholder="8 caractères min." maxlength="255" />
+                    <a href="index.php?action=forgottenPwd">Mot de passe oublié ?</a>
                 </div>
             </div>
         </div>
@@ -35,15 +30,15 @@
             <div class="inputBlocks">
                 <div class="inputBlock">
                     <h2>Email</h2>
-                    <input type="text" name="email" id="emailIns" class="element" placeholder="Votre Email" maxlength="255" />
-                </div>
-                <div class="inputBlock">
-                    <h2>Pseudo</h2>
-                    <input type="text" name="pseudo" id="pseudoIns" class="element" placeholder="Votre Pseudo" maxlength="255" />
+                    <input type="text" name="emailIns" class="element" placeholder="Votre Email" maxlength="255" />
                 </div>
                 <div class="inputBlock">
                     <h2>Mot de passe</h2>
-                    <input type="text" name="pwd" id="pwdIns" class="element" placeholder="8 caractères min." maxlength="10" />
+                    <input type="password" name="pwdIns" class="element" placeholder="8 caractères min." maxlength="255" />
+                </div>
+                <div class="inputBlock">
+                    <h2>Confirmation de votre mot de passe</h2>
+                    <input type="password" name="pwdInsCheck" class="element" placeholder="8 caractères min." maxlength="255" />
                 </div>
             </div>
         </div>

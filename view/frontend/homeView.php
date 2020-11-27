@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 
 <div id="container2">
-  <input type="text" name="pseudo" id="pseudo" class="element" placeholder="PSEUDO" size="255" maxlength="10" />
+  <input type="text" name="pseudo" id="pseudo" class="element" placeholder="PSEUDO" size="255" maxlength="15" onchange="createCookie('pseudo', value,365)" />
 
   <div class="blocks">
     <a class="block create element" href="index.php?action=create">
@@ -22,13 +22,9 @@
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<<<<<<< Updated upstream
-<?php require('template.php'); ?>
-=======
 <?php $js = "<script src=\"public/js/script.js\"></script>" ?>
 <?php require('template.php'); ?>
 
 <script type="text/javascript">
   document.getElementById('pseudo').value = readCookie('pseudo');
 </script>
->>>>>>> Stashed changes
