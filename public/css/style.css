@@ -135,8 +135,8 @@ header {
   border-style: none;
   border-radius: 15%;
   box-shadow: 0px 7px rgba(0, 0, 255, .2);
-  transition-duration: 1000ms;
-  transform: scale(1);
+  /*transition-duration: 1000ms;
+  transform: scale(1);*/
 }
 
 .block:hover {
