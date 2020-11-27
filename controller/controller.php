@@ -1,11 +1,4 @@
 <?php
-<<<<<<< Updated upstream
-function connectView(){
-    require('view/frontend/connectView.php');
-
-}
-function homeView(){
-=======
 require_once('model/PartyManager.php');
 
 function connectView()
@@ -26,30 +19,14 @@ function forgottenPwd()
 
 function homeView()
 {
->>>>>>> Stashed changes
     require('view/frontend/homeView.php');
-
-<<<<<<< Updated upstream
 }
-function createView(){
-=======
+
 function createView()
 {
->>>>>>> Stashed changes
     require('view/frontend/createView.php');
-
-<<<<<<< Updated upstream
 }
-function joinView(){
-    require('view/frontend/joinView.php');
 
-}
- 
- function CreatePartyView()
-{
-    echo $_POST['Titre'];
-   require('view/frontend/Game.php');
-=======
 function joinView()
 {
     require('view/frontend/joinView.php');
@@ -83,7 +60,6 @@ function waitingRoomView()
     } else {
         createView();
     }
->>>>>>> Stashed changes
 }
 
 /*
