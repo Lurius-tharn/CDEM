@@ -3,7 +3,6 @@
 
 
 <div class="connectBlocks">
-    <div class="connectblock">
     <form action="index.php?action=check" method="post" class="connectblock">
         <div class="connectForm">
             <h1>Déjà membre ?</h1>
@@ -25,11 +24,9 @@
             </div>
         </div>
 
-        <button class="button" type="button" name="buttonCon">
         <button class="button" type="submit" name="buttonCon">
             <p>Se connecter</p>
         </button>
-    </div>
     </form>
 
     <form action="index.php?action=new" method="post" class="connectblock">
@@ -51,11 +48,9 @@
             </div>
         </div>
 
-        <button class="button" type="button" name="buttonIns">
         <button class="button" type="submit" name="buttonIns">
             <p>S'inscrire</p>
         </button>
-    </div>
     </form>
 </div>
 

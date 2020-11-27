@@ -5,7 +5,6 @@ session_start(); // start up your PHP session!
 <?php $title = "Créer" ?>
 <?php ob_start(); ?>
 
-<form class="formCreate" action="index.php?action=createParty" method="POST">
 <form class="formCreate" action="index.php?action=waitingRoom" method="POST">
 
   <div id="partyBlock">

@@ -89,21 +89,14 @@ function waitingRoomView()
 /*
 Fonction pour générer un code de partiealéatoire
 
-*/ 
 */
 
-function generateRandomString($length = 6) {
-    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function generateRandomString($length = 6)
 {
     $PartyManager = new PartyManager();
 
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
     do {
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
