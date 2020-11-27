@@ -22,4 +22,11 @@
 </div>
 
 <?php $content = ob_get_clean(); ?>
+<?php require('template.php'); ?><?php require('template.php'); ?>
+<?php $js = "<script src=\"public/js/script.js\"></script>" ?>
 <?php require('template.php'); ?>
+
+<script type="text/javascript">
+  document.getElementById('pseudo').value = readCookie('pseudo');
+</script>
+>>>>>>> Stashed changes

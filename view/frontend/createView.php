@@ -6,6 +6,7 @@ session_start(); // start up your PHP session!
 <?php ob_start(); ?>
 
 <form class="formCreate" action="index.php?action=createParty" method="POST">
+<form class="formCreate" action="index.php?action=waitingRoom" method="POST">
 
   <div id="partyBlock">
     <h1>Création d'une partie</h1>
@@ -23,7 +24,11 @@ session_start(); // start up your PHP session!
       <div class="code choice">
         <p>Joueurs</p>
         <div class="Scrollbar">
+<<<<<<< Updated upstream
           <input type="range" min="3" max="10" class="slider" id="ScrollPlayers" oninput="ScrollValue('ScrollPlayers','ValuePlayers')" autocomplete="off">
+=======
+          <input type="range" name ="Players" min="3" max="10" value="6" class="slider" id="ScrollPlayers" oninput="ScrollValue('ScrollPlayers','ValuePlayers')" autocomplete="off">
+>>>>>>> Stashed changes
           <p id="ValuePlayers" class="scrollValue">6</p>
         </div>
       </div>
@@ -31,8 +36,13 @@ session_start(); // start up your PHP session!
       <div class="code choice">
         <p>Score</p>
         <div class="Scrollbar">
+<<<<<<< Updated upstream
           <input name="Titre" type="range" min="50" step="25" max="200" value="100" class="slider" id="ScrollScore" oninput="ScrollValue('ScrollScore','ValueScore')" autocomplete="off">
           <p id="ValueScore" class="scrollValue">125</p>
+=======
+          <input name="Score" type="range" min="50" step="25" max="200" value="100" class="slider" id="ScrollScore" oninput="ScrollValue('ScrollScore','ValueScore')" autocomplete="off">
+          <p id="ValueScore" class="scrollValue">100</p>
+>>>>>>> Stashed changes
         </div>
       </div>
     </div>
