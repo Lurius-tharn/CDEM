@@ -2,12 +2,9 @@
 session_start();
 require('controller/controller.php');
 
-
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'connect') {
         connectView();
-<<<<<<< Updated upstream
-=======
     } else if ($_GET['action'] == 'check') {
         checkLogin();
     }else if ($_GET['action'] == 'new') {
@@ -16,7 +13,6 @@ if (isset($_GET['action'])) {
         forgottenPwd();
     }else if (!isset($_COOKIE['pseudo']) OR empty($_COOKIE['pseudo'])) {
         homeView();
->>>>>>> Stashed changes
     } else if ($_GET['action'] == 'create') {
         createView();
     } else if ($_GET['action'] == 'join') {
