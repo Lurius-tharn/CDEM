@@ -23,6 +23,9 @@
 
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?><?php require('template.php'); ?>
+<<<<<<< Updated upstream
+<?php require('template.php'); ?>
+=======
 <?php $js = "<script src=\"public/js/script.js\"></script>" ?>
 <?php require('template.php'); ?>
 
