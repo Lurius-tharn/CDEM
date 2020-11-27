@@ -1,0 +1,26 @@
+<?php $title = "Mot de passe oublié ?" ?>
+<?php ob_start(); ?>
+
+
+<div class="Frogetblock">
+    <div class="connectblock">
+        <div class="connectForm">
+            <h1>Mot de passe oublié ?</h1>
+            <h3>Nous allons vous envoyer un email afin de réinitialiser votre mot de passe.</h3>
+            <div class="inputBlocks">
+                <div class="inputBlock">
+                    <h2>Email</h2>
+                    <input type="text" name="email" id="emailIns" class="element" placeholder="Votre Email" maxlength="255" />
+                </div>
+            </div>
+        </div>
+
+        <button class="button" type="button" name="buttonIns">
+            <p>ENVOYER</p>
+        </button>
+    </div>
+</div>
+
+<?php $content = ob_get_clean(); ?>
+<?php $css = "<link href=\"public/css/connexion.css?v=<?php echo time(); ?>\" rel=\"stylesheet\" />" ?>
+<?php require('template.php'); ?>
