@@ -1,5 +1,6 @@
 <?php
 require_once('model/PartyManager.php');
+require_once('model/PlayerManager.php');
 
 function connectView()
 {
@@ -19,6 +20,7 @@ function forgottenPwd()
 
 function homeView()
 {
+
     require('view/frontend/homeView.php');
 }
 
@@ -34,7 +36,7 @@ function joinView()
 
 /* Fonction qui appelle la page d'attente après la création de partie de l'hôte
     Ajout de la partie dans la base de données
-    redirection vers la fonction WaitView quand la partie sera créer(à voir).
+    redirection vers la fonction WaitView quand la partie sera créée(à voir).
 */
 function waitingRoomView()
 {
@@ -63,7 +65,7 @@ function waitingRoomView()
 }
 
 /*
-Fonction pour générer un code de partiealéatoire
+Fonction pour générer un code de partie aléatoire
 
 */
 
