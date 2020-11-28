@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 
 <div id="container2">
-  <input type="text" name="pseudo" id="pseudo" class="element" placeholder="PSEUDO" size="255" maxlength="15" onchange="createCookie('pseudo', value,365)" />
+  <input type="text" name="pseudo" id="pseudo" class="element" placeholder="PSEUDO" size="255" maxlength="15" onchange="createCookie('username', value,365)" />
 
   <div class="blocks">
     <a class="block create element" href="index.php?action=create">
@@ -26,5 +26,5 @@
 <?php require('template.php'); ?>
 
 <script type="text/javascript">
-  document.getElementById('pseudo').value = readCookie('pseudo');
+  document.getElementById('pseudo').value = readCookie('username');
 </script>

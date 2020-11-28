@@ -8,9 +8,10 @@ if (isset($_POST['email']) and !empty($_POST['email']) and isset($_POST['pwd']) 
         if ($_POST['pwd'] == $_POST['pwdCheck']) { //vérification du mot de passe
 
             if (preg_match('#^(?=.{8,}$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$#', $_POST['pwd'])) { //vérification de la force du mot de passe
-                $hash = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
-                $PartyManager = new PartyManager();
-                if ($PartyManager->newPlayer($_POST['email'], $hash)) { //si l'email n'est pas déjà inscrite on l'inscrit
+                
+                $PlayerManager = new PlayerManager();
+                if ($PlayerManager->newPlayer($_POST['email'], $_POST['pwd'])) { //si l'email n'est pas déjà inscrite on l'inscrit
+                    $PlayerManager->connectPlayer($_POST['email'], $_POST['pwd']);
                     header('Location: index.php');
                     exit;
                 } else {
