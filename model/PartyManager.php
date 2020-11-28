@@ -9,8 +9,48 @@ class PartyManager extends Manager
     function registerPlayer($idGame)
     {
         $db = $this->dbConnect();
-        
     }
+
+    /* Fonction qui enregistre un joueur dans la base de donnée
+    */
+    function newPlayer($email, $hash)
+    {
+        $db = $this->dbConnect();
+        $party_SearchEmail = $db->query('SELECT email FROM player');
+
+        while ($emailPlayer = $party_SearchEmail->fetch()) {
+            if (strcmp($emailPlayer['email'], $email) == 0) {
+                return False;
+            }
+        }
+
+        $party_InsertNewPlayer = $db->prepare('INSERT INTO player(email, pwd)
+        VALUES(:email, :pwd)');
+
+        $party_InsertNewPlayer->execute(array(
+            'email' => $email,
+            'pwd' => $hash
+        ));
+        return True;
+    }
+
+    /* Fonction qui connecte un joueur
+    */
+    function connectPlayer($email, $pwd)
+    {
+        $db = $this->dbConnect();
+        $party_Search = $db->query('SELECT * FROM player');
+
+        while ($Player = $party_Search->fetch()) {
+            if (strcmp($Player['email'], $email) == 0) {
+                if(password_verify($pwd, $Player['pwd'])){
+                    return True;
+                }
+                return False;
+            }
+        }
+    }
+
 
     /* Fonction qui crée la Partie(à partir de la page createView) 
         prends en paramètre un tableau comprenant:
