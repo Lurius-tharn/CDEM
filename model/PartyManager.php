@@ -3,55 +3,6 @@ require_once("model/Manager.php");
 
 class PartyManager extends Manager
 {
-
-    /* Fonction qui enregistre un joueur dans une partie
-    */
-    function registerPlayer($idGame)
-    {
-        $db = $this->dbConnect();
-    }
-
-    /* Fonction qui enregistre un joueur dans la base de donnée
-    */
-    function newPlayer($email, $hash)
-    {
-        $db = $this->dbConnect();
-        $party_SearchEmail = $db->query('SELECT email FROM player');
-
-        while ($emailPlayer = $party_SearchEmail->fetch()) {
-            if (strcmp($emailPlayer['email'], $email) == 0) {
-                return False;
-            }
-        }
-
-        $party_InsertNewPlayer = $db->prepare('INSERT INTO player(email, pwd)
-        VALUES(:email, :pwd)');
-
-        $party_InsertNewPlayer->execute(array(
-            'email' => $email,
-            'pwd' => $hash
-        ));
-        return True;
-    }
-
-    /* Fonction qui connecte un joueur
-    */
-    function connectPlayer($email, $pwd)
-    {
-        $db = $this->dbConnect();
-        $party_Search = $db->query('SELECT * FROM player');
-
-        while ($Player = $party_Search->fetch()) {
-            if (strcmp($Player['email'], $email) == 0) {
-                if(password_verify($pwd, $Player['pwd'])){
-                    return True;
-                }
-                return False;
-            }
-        }
-    }
-
-
     /* Fonction qui crée la Partie(à partir de la page createView) 
         prends en paramètre un tableau comprenant:
             le numéro de l'hote(le numéro qui sera attribué au joueur en page d'acceuil)
@@ -66,7 +17,7 @@ class PartyManager extends Manager
     function createParty($partySettings)
     {
         $db = $this->dbConnect();
-        $party_InsertQuery = $db->prepare('INSERT INTO game(nbPlayers,nbMaxPlayers,scoreMax,isInProgress,isPublic,code)
+        $party_InsertQuery = $db->prepare('INSERT INTO game(nbPlayers, nbMaxPlayers, scoreMax, isInProgress, isPublic, code)
             VALUES(:nbPlayers, :nbMaxPlayers, :scoreMax, :isInProgress, :isPublic, :code)');
         $party_InsertQuery->execute(array(
             'nbPlayers' => 1,
@@ -81,13 +32,39 @@ class PartyManager extends Manager
         $party_GetId->execute(array('codeGame' => $partySettings['code']));
         $idGame = $party_GetId->fetch();
         $_SESSION['idGame'] = $idGame;
+        $this->registerPlayer($idGame, 1);
     }
 
+
+    /* Fonction qui enregistre un joueur dans une partie
+    */
+    function registerPlayer($idGame, $isHost)
+    {
+        $db = $this->dbConnect();
+
+        $PlayerManager = new PlayerManager();
+        if ($PlayerManager->isConnected()) {
+            $idPlayer =  $_SESSION['idPlayer'];
+        } else {
+            $idPlayer = $PlayerManager->createIdPlayer();
+            $_SESSION['idPlayer'] =  $idPlayer;
+        }
+
+        $party_InsertQuery = $db->prepare('INSERT INTO play(idGame, idPlayer, username, isHost)
+            VALUES(:idGame, :idPlayer, :username, :isHost)');
+
+        $party_InsertQuery->execute(array(
+            'idGame' => intval($idGame),
+            'idPlayer' => $idPlayer,
+            'username' => $_COOKIE['username'],
+            'isHost' => intval($isHost)
+        ));
+    }
 
     /* Fonction qui met à jour le nombre de joueurs
         Possibilité de faire un trigger
     */
-    function updatenbPlayers($partyId)
+    function updateNbPlayers($partyId)
     {
         $db = $this->dbConnect();
         $party_UpdateQuery = $db->prepare('UPDATE party SET nbPlayers =(nbPlayers+1)
