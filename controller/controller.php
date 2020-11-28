@@ -38,14 +38,14 @@ function joinView()
 */
 function waitingRoomView()
 {
-    if (isset($_POST["boolParty"]) and !empty($_POST["boolParty"]) and isset($_POST["Players"]) and !empty($_POST["Players"]) and isset($_POST["Score"]) and !empty($_POST["Score"])) {
+    if (isset($_POST['boolParty']) and !empty($_POST['boolParty']) and isset($_POST['Players']) and !empty($_POST['Players']) and isset($_POST['Score']) and !empty($_POST['Score'])) {
 
         $PartyManager = new PartyManager();
         $isPublic = 0;
 
-        if (($_POST["boolParty"] == 'Privé')) {
+        if (($_POST['boolParty'] == 'Privé')) {
             $isPublic = 0;
-        } else if ($_POST["boolParty"] == 'Public') {
+        } else if ($_POST['boolParty'] == 'Public') {
             $isPublic = 1;
         }
 
