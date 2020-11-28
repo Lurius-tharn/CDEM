@@ -6,14 +6,15 @@
     <form action="index.php?action=check" method="post" class="connectblock">
         <div class="connectForm">
             <h1>Déjà membre ?</h1>
+            <h2 id="connectError"><?php if (isset($_SESSION['connectError']) and !empty($_SESSION['connectError'])) echo($_SESSION['connectError']);unset($_SESSION['connectError']);?></h2>
             <div class="inputBlocks">
                 <div class="inputBlock">
                     <h2>Email</h2>
-                    <input type="text" name="emailCon" class="element" placeholder="Votre Email" maxlength="255" />
+                    <input type="text" name="email" class="element" placeholder="Votre Email" maxlength="255" required/>
                 </div>
                 <div class="inputBlock">
                     <h2>Mot de passe</h2>
-                    <input type="password" name="pwdCon" class="element" placeholder="8 caractères min." maxlength="255" />
+                    <input type="password" name="pwd" class="element" placeholder="8 caractères min." maxlength="255" required />
                     <a href="index.php?action=forgottenPwd">Mot de passe oublié ?</a>
                 </div>
             </div>
@@ -27,18 +28,19 @@
     <form action="index.php?action=new" method="post" class="connectblock">
         <div class="connectForm">
             <h1>Pas encore membre ?</h1>
+            <h2 id="registerError"><?php if (isset($_SESSION['registerError']) and !empty($_SESSION['registerError'])) echo($_SESSION['registerError']); unset($_SESSION['registerError']);?></h2>
             <div class="inputBlocks">
                 <div class="inputBlock">
                     <h2>Email</h2>
-                    <input type="text" name="emailIns" class="element" placeholder="Votre Email" maxlength="255" />
+                    <input type="text" name="email" class="element" placeholder="Votre Email" maxlength="255" required />
                 </div>
                 <div class="inputBlock">
                     <h2>Mot de passe</h2>
-                    <input type="password" name="pwdIns" class="element" placeholder="8 caractères min." maxlength="255" />
+                    <input type="password" name="pwd" class="element" placeholder="8 caractères min." maxlength="255" required />
                 </div>
                 <div class="inputBlock">
                     <h2>Confirmation de votre mot de passe</h2>
-                    <input type="password" name="pwdInsCheck" class="element" placeholder="8 caractères min." maxlength="255" />
+                    <input type="password" name="pwdCheck" class="element" placeholder="8 caractères min." maxlength="255" required />
                 </div>
             </div>
         </div>
