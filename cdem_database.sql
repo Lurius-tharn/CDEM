@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 27 nov. 2020 à 14:00
+-- Généré le : Dim 29 nov. 2020 à 18:41
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `game` (
   `isPublic` tinyint(1) NOT NULL,
   `code` varchar(6) NOT NULL,
   PRIMARY KEY (`idGame`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -49,8 +49,16 @@ DROP TABLE IF EXISTS `minigame`;
 CREATE TABLE IF NOT EXISTS `minigame` (
   `idMinigame` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `timeMax` time NOT NULL,
   PRIMARY KEY (`idMinigame`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `minigame`
+--
+
+INSERT INTO `minigame` (`idMinigame`, `name`, `timeMax`) VALUES
+(1, 'Press the key', '00:00:00');
 
 -- --------------------------------------------------------
 
@@ -66,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `play` (
   `username` varchar(255) NOT NULL,
   `isHost` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPlay`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -80,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `email` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   PRIMARY KEY (`idPlayer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
