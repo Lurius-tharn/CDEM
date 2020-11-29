@@ -41,6 +41,7 @@ class PartyManager extends Manager
     function registerPlayer($idGame, $isHost)
     {
         $db = $this->dbConnect();
+        $_SESSION['idGame'] = intval($idGame);
 
         $PlayerManager = new PlayerManager();
         if ($PlayerManager->isConnected()) {
