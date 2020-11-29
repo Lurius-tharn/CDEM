@@ -21,7 +21,7 @@
         <div class="code choice">
           <p>Code</p>
           <div class="inputBlock">
-            <input type="text" name="code" id="codeJoin" size="6" placeholder="HXFEAS" maxlength="6"/>
+            <input type="text" name="code" id="codeJoin" size="6" placeholder="HXFEAS" maxlength="6" required/>
           </div>
         </div>
       </div>

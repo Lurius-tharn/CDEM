@@ -1,4 +1,4 @@
-<?php $title = "Cdem.fun" ?>
+<?php $title = "cdem.fun" ?>
 <?php ob_start(); ?>
 
 <div id="container2">
