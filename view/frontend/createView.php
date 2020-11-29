@@ -1,21 +1,21 @@
 <?php $title = "Créer" ?>
 <?php ob_start(); ?>
 
-<form class="formCreate" action="index.php?action=waitingRoom" method="POST">
+<form class="formCreate" action="index.php?action=createWaitingRoom" method="POST">
 
   <div id="partyBlock">
     <h1>Création d'une partie</h1>
 
     <div class="choices">
       <div class="choice">
-        <button class="buttonChoice" type="button" id="Privé" onclick="buttonClicked('Privé');">
+        <button class="buttonChoice" type="button" id="Privé" onclick="buttonClicked('Privé', 'create');">
           <p>Privé</p>
         </button>
-        <button class="buttonChoice "   type="button" id="Public" onclick="buttonClicked('Public');">
+        <button class="buttonChoice "   type="button" id="Public" onclick="buttonClicked('Public', 'create');">
           <p>Public</p>
         </button>
       </div>
-      <input type = "hidden" id = "hiddenBool" name="boolParty" value ="Privé"></input>
+      <input type = "hidden" id = "hiddenBool" name="boolParty"></input>
       <div class="code choice">
         <p>Joueurs</p>
         <div class="Scrollbar">
@@ -36,7 +36,7 @@
   </div>
 
   <div class="buttons">
-    <button class="button" type="button" name="button" onclick="window.location.href='index.php';">
+    <button class="button" type="button" name="button" onclick="window.location.href='/CDEM';">
       <p>Retour</p>
     </button>
     <button class="button" type="submit" name="button">

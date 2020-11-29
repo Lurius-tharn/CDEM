@@ -18,7 +18,7 @@
 
 <body>
     <header>
-        <a id="logo" href="index.php"> cdem.fun</a>
+        <a id="logo" href="/CDEM"> cdem.fun</a>
         <div id="connect">
         <div id="round"></div>
             <?php

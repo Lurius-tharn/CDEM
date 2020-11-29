@@ -1,17 +1,17 @@
 <?php $title = "Rejoindre" ?>
 <?php ob_start(); ?>
 
-<div class="joinPage">
+<form action="index.php?action=joinWaitingRoom" method="post" class="joinPage">
   <div id="partyBlock">
 
     <h1>Rejoindre une partie</h1>
-
+    <h2 id="joinError"><?php if (isset($_SESSION['joinError']) and !empty($_SESSION['joinError'])) echo($_SESSION['joinError']);unset($_SESSION['joinError']);?></h2>
     <div class="choices">
       <div class="choice">
-        <button class="buttonChoice" type="button" id="Privé" onclick="buttonChange('private')">
+        <button class="buttonChoice" type="button" id="Privé" onclick="buttonChange('private', 'join')">
           <p>Privé</p>
         </button>
-        <button class="buttonChoice " type="button" id="Public" onclick="buttonChange('public')">
+        <button class="buttonChoice " type="button" id="Public" onclick="buttonChange('public', 'join')">
           <p>Public</p>
         </button>
       </div>
@@ -21,7 +21,7 @@
         <div class="code choice">
           <p>Code</p>
           <div class="inputBlock">
-            <input type="text" name="code" id="codeJoin" size="6" placeholder="HXFEAS" maxlength="6" />
+            <input type="text" name="code" id="codeJoin" size="6" placeholder="HXFEAS" maxlength="6"/>
           </div>
         </div>
       </div>
@@ -38,14 +38,14 @@
   </div>
 
   <div class="buttons">
-    <button class="button" type="button" name="button" onclick="window.location.href='index.php';">
+    <button class="button" type="button" name="button" onclick="window.location.href='/CDEM';">
       <p>Retour</p>
     </button>
-    <button class="button" type="submit" name="button" onclick="window.location.href='index.php';">
+    <button class="button" type="submit" name="button">
       <p>Rejoindre</p>
     </button>
   </div>
-</div>
+</form>
 
 <?php $content = ob_get_clean(); ?>
 <?php $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />" ?>
