@@ -21,8 +21,10 @@ if (isset($_GET['action'])) {
         createView();
     } else if ($_GET['action'] == 'join') {
         joinView();
-    } else if ($_GET['action'] == 'waitingRoom') {
-        waitingRoomView();
+    } else if ($_GET['action'] == 'createWaitingRoom') {
+        createWaitingRoomView();
+    } else if ($_GET['action'] == 'joinWaitingRoom') {
+        joinWaitingRoomView();
     }
 } else {
     homeView();
