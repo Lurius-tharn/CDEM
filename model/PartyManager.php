@@ -20,7 +20,7 @@ class PartyManager extends Manager
         $party_InsertQuery = $db->prepare('INSERT INTO game(nbPlayers, nbMaxPlayers, scoreMax, isInProgress, isPublic, code)
             VALUES(:nbPlayers, :nbMaxPlayers, :scoreMax, :isInProgress, :isPublic, :code)');
         $party_InsertQuery->execute(array(
-            'nbPlayers' => 1,
+            'nbPlayers' => 0,
             'nbMaxPlayers' => $partySettings['nbMaxPlayers'],
             'scoreMax' => $partySettings['scoreMax'],
             'isInProgress' => 0,
@@ -31,8 +31,8 @@ class PartyManager extends Manager
         $party_GetId = $db->prepare('SELECT idGame FROM game WHERE code=:codeGame');
         $party_GetId->execute(array('codeGame' => $partySettings['code']));
         $idGame = $party_GetId->fetch();
-        $_SESSION['idGame'] = $idGame;
-        $this->registerPlayer($idGame, 1);
+        $_SESSION['idGame'] = intval($idGame['idGame']);
+        $this->registerPlayer(intval($idGame['idGame']), 1);
     }
 
 
@@ -59,17 +59,18 @@ class PartyManager extends Manager
             'username' => $_COOKIE['username'],
             'isHost' => intval($isHost)
         ));
+        $this->updateNbPlayers(intval($idGame));
     }
 
     /* Fonction qui met à jour le nombre de joueurs
         Possibilité de faire un trigger
     */
-    function updateNbPlayers($partyId)
+    function updateNbPlayers($idGame)
     {
         $db = $this->dbConnect();
-        $party_UpdateQuery = $db->prepare('UPDATE party SET nbPlayers =(nbPlayers+1)
+        $party_UpdateQuery = $db->prepare('UPDATE game SET nbPlayers =(nbPlayers+1)
         WHERE idGame = :idGame');
-        $party_UpdateQuery->execute(array('idGame' => $partyId));
+        $party_UpdateQuery->execute(array('idGame' => $idGame));
     }
 
     /* Fonction qui vérifie qu'un code de partie n'existe pas déjà
@@ -84,5 +85,40 @@ class PartyManager extends Manager
                 return False;
         }
         return True;
+    }
+
+    /* Fonction qui récupère idGame en fonction de son code
+    */
+    function getIdGame($code)
+    {
+        $db = $this->dbConnect();
+        $party_GetId = $db->prepare('SELECT * FROM game WHERE code = :code');
+        $party_GetId->execute(array('code' => $code));
+
+        $game = $party_GetId->fetch();
+        if (!$game)
+            return 'Partie introuvable';
+        if ($game['isInProgress'] == 1)
+            return 'La partie a déjà commencé';
+        if ($game['nbPlayers'] >= $game['nbMaxPlayers'])
+            return 'La partie est complète';
+
+        return intval($game['idGame']);
+    }
+
+    /* Fonction qui récupère un idGame d'une partie publique et non commencée
+    */
+    function getRandomIdGame()
+    {
+        $db = $this->dbConnect();
+        $party_GetRandomId = $db->query('SELECT * FROM game WHERE isPublic = 1 AND isInProgress = 0');
+
+        while ($game = $party_GetRandomId->fetch()) {
+            if (!$game)
+                return 'Aucune partie n\'est disponible';
+            if ($game['nbPlayers'] < $game['nbMaxPlayers'])
+                return intval($game['idGame']);
+        }
+        return 'Aucune partie n\'est disponible';
     }
 }
