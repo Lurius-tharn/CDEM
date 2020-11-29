@@ -45,7 +45,6 @@ function buttonChange(button, page) {
 
 }
 
-
 function ScrollValue(Scroll, Value) {
     var slider = document.getElementById(Scroll);
     var output = document.getElementById(Value);
@@ -55,18 +54,6 @@ function ScrollValue(Scroll, Value) {
     }
 
 }
-
-function PseudoValidator(liens) {
-    var pseudo = document.getElementById('pseudo');
-    if (pseudo.value == null) {
-        pseudo.style.backgroundColor = 'red';
-    } else {
-        var link = this.href = 'index.php?action=' + liens + '&pseudo=' + pseudo.value;
-        return link;
-    }
-
-}
-
 
 window.addEventListener("load", function () {
     buttonClicked('Privé');
