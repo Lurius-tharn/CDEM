@@ -177,27 +177,6 @@
   font-size: 2em;
 }
 
-.LeftValue {
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-right: 20px solid #6c70e2;
-}
-
-.RightValue {
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 20px solid #6c70e2;
-}
-
-.RightValue:hover, .LeftValue:hover {
-  transition: 1000ms;
-  transform: scale(1.1);
-}
-
 /******************************************** Input part ********************************************/
 
 .inputBlock {
