@@ -88,6 +88,7 @@ Fonction pour générer un code de partie aléatoire
 
   public function generateRandomString($length = 6)
   {
+    require_once('model/party.php');
     $Party = new Party();
 
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -99,5 +100,40 @@ Fonction pour générer un code de partie aléatoire
       }
     } while (!$Party->isAvailable($randomString));
     return $randomString;
+  }
+
+  function joinRoom()
+  {
+    require_once('model/party.php');
+    $Party = new Party();
+
+    if (isset($_POST['code']) and !empty($_POST['code'])) {
+
+      $_POST['code'] = htmlspecialchars($_POST['code']);
+      $id = $Party->getIdGame($_POST['code']);
+
+      if (is_int($id)) {
+        $Party->registerPlayer($id, 0);
+        $view = new View("room");
+        $view->generate(null);
+      } else {
+        $_SESSION['joinError'] = $id;
+        $view = new View("joinParty");
+        $view->generate(null);
+      }
+    } else {
+
+      $id = $Party->getRandomIdGame();
+
+      if (is_int($id)) {
+        $Party->registerPlayer($id, 0);
+        $view = new View("room");
+        $view->generate(null);
+      } else {
+        $_SESSION['joinError'] = $id;
+        $view = new View("joinParty");
+        $view->generate(null);
+      };
+    }
   }
 }
