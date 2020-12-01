@@ -1,6 +1,6 @@
 <?php $title = "Rejoindre" ?>
 
-<form action="" method="post" class="joinPage">
+<form action="join-room" method="post" class="joinPage">
   <div id="partyBlock">
 
     <h1>Rejoindre une partie</h1>
