@@ -12,3 +12,4 @@ $fmk->initRoute("disconnect", "disconnect", "playerController.php", "disconnect"
 $fmk->initRoute("forgotten-password", "forgotten-password", "playerController.php", "forgottenPassword");
 
 $fmk->initRoute("create-room", "create-room", "partyController.php", "createRoom");
+$fmk->initRoute("join-room", "join-room", "partyController.php", "joinRoom");
