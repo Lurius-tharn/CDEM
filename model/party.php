@@ -27,48 +27,15 @@ class Party extends Model
             'isPublic' => $partySettings['isPublic'],
             'code' => $partySettings['code']
         );
-
         $this->executeQuery($sql, $params);
-
-        $sql = 'SELECT idGame FROM game WHERE code=:codeGame';
-        $params = array('codeGame' => $partySettings['code']);
-
-        $result = $this->executeQuery($sql, $params);
-
-        $idGame = $result->fetch();
-        $_SESSION['idGame'] = intval($idGame['idGame']);
-        $this->registerPlayer(intval($idGame['idGame']), 1);
+        return $this->getParty($params['code']);
     }
 
-
-    /* Fonction qui enregistre un joueur dans une partie
-    */
-    function registerPlayer($idGame, $isHost)
-    {
-        $_SESSION['idGame'] = intval($idGame);
-
-        require_once 'model/player.php';
-        $Player = new Player();
-
-        if ($Player->isConnected()) {
-            $idPlayer =  $_SESSION['idPlayer'];
-        } else {
-            $idPlayer = $Player->createIdPlayer();
-            $_SESSION['idPlayer'] =  $idPlayer;
-        }
-
-        $sql = 'INSERT INTO play(idGame, idPlayer, username, isHost)
-            VALUES(:idGame, :idPlayer, :username, :isHost)';
-
-        $params = array(
-            'idGame' => intval($idGame),
-            'idPlayer' => $idPlayer,
-            'username' => $_COOKIE['username'],
-            'isHost' => intval($isHost)
-        );  
-        $this->executeQuery($sql, $params);
-
-        $this->updateNbPlayers(intval($idGame));
+    function getParty($code){
+        $sql = 'SELECT * FROM game WHERE code=:codeGame';
+        $params = array('codeGame' => $code);
+        $result = $this->executeQuery($sql, $params)->fetch();
+        return $result;
     }
 
     /* Fonction qui met à jour le nombre de joueurs
@@ -115,19 +82,49 @@ class Party extends Model
         return intval($game['idGame']);
     }
 
-    /* Fonction qui récupère un idGame d'une partie publique et non commencée
+    /* Fonction qui récupère une partie publique et non commencée
     */
-    function getRandomIdGame()
+    function getRandomGame()
     {
-        $sql = 'SELECT * FROM game WHERE isPublic = 1 AND isInProgress = 0';
-        $result = $this->executeQuery($sql);
-
-        while ($game = $result->fetch()) {
-            if (!$game)
-                return 'Aucune partie n\'est disponible';
-            if ($game['nbPlayers'] < $game['nbMaxPlayers'])
-                return intval($game['idGame']);
+        $sqlCount = 'SELECT count(*) as nb FROM game WHERE isPublic = 1 AND isInProgress = 0';
+        $resultCount = $this->executeQuery($sqlCount)->fetch();
+        if( !$resultCount || intval($resultCount['nb']) === 0){
+            return false;
+        }else{
+            $numEnr = random_int(1, intval( $resultCount['nb']))-1;
+            $sql = 'SELECT * FROM game WHERE isPublic = 1 AND isInProgress = 0 LIMIT 1 OFFSET '.$numEnr;
+            $result = $this->executeQuery($sql)->fetch();
+            return $result;
         }
-        return 'Aucune partie n\'est disponible';
+    }
+
+    // Fonction qui retourne tous les joueurs d'une partie
+    function getPlayers($code){
+        $idGame = $this->getIdGame($code);
+        $sql = 'SELECT * FROM play WHERE idGame = :idGame';
+        $params = array('idGame' => $idGame);
+        $result = $this->executeQuery($sql, $params)->fetchAll();
+        
+        return $result;
+    }
+
+    // Fonction qui retourne le nombre maximum de joueurs d'une partie
+    function getNbMaxPlayers($code){
+        $sql = 'SELECT nbMaxPlayers FROM game WHERE code = :code';
+        $params = array('code' => $code);
+        $result = $this->executeQuery($sql, $params);
+        
+        $nb = $result->fetch();
+        return intval($nb[0]);
+    }
+
+    // Fonction qui retourne le nombre de joueurs d'une partie
+    function getNbPlayers($code){
+        $sql = 'SELECT nbPlayers FROM game WHERE code = :code';
+        $params = array('code' => $code);
+        $result = $this->executeQuery($sql, $params);
+    
+        $nb = $result->fetch();
+        return intval($nb[0]);
     }
 }

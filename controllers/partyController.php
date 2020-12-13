@@ -10,6 +10,7 @@ class PartyController
   {
   }
 
+  // generate createParty view
   public function create($username)
   {
     $this->isUsername($username);
@@ -20,6 +21,7 @@ class PartyController
     $view->generate(null);
   }
 
+  // generate joinParty view
   public function join($username)
   {
     $this->isUsername($username);
@@ -30,6 +32,7 @@ class PartyController
     $view->generate(null);
   }
 
+  // return true if the username exist
   private function isUsername($username)
   {
     if (!isset($username[0]) or empty($username[0])) {
@@ -37,6 +40,7 @@ class PartyController
     }
   }
 
+  // delete usersname cookie
   public function deleteUsername()
   {
     if (isset($_COOKIE['username'])) {
@@ -46,6 +50,8 @@ class PartyController
     exit;
   }
 
+  // create a new waiting room
+  // generate room view
   public function createRoom()
   {
     if (isset($_POST['boolParty']) and !empty($_POST['boolParty']) and isset($_POST['Players']) and !empty($_POST['Players']) and isset($_POST['Score']) and !empty($_POST['Score'])) {
@@ -63,29 +69,34 @@ class PartyController
       }
 
       require_once('model/party.php');
+      require_once('model/player.php');
       $Party = new Party();
+      $Player = new Player();
+
+      $code = $this->generateRandomString();
 
       $params = array(
         'nbMaxPlayers' => $_POST['Players'],
         'scoreMax' => $_POST['Score'],
         'isPublic' => $isPublic,
-        'code' => $this->generateRandomString()
+        'code' => $code
       );
-      $Party->createParty($params);
+      $myParty = $Party->createParty($params);
+      $_SESSION['idGame'] = intval($myParty['idGame']);
 
+      $Player->registerPlayer(intval($myParty['idGame']), 1);
+
+      setcookie('code', $code, time() + 365 * 24 * 3600, '/', null, false, true);
+      $_SESSION['code'] = $code;
       $view = new View("room");
-      $view->generate(null);
+      $view->generate($params);
     } else {
       $view = new View("createParty");
       $view->generate(null);
     }
   }
 
-  /*
-Fonction pour générer un code de partie aléatoire
-
-*/
-
+  // generate a party code
   public function generateRandomString($length = 6)
   {
     require_once('model/party.php');
@@ -102,38 +113,79 @@ Fonction pour générer un code de partie aléatoire
     return $randomString;
   }
 
+  // join an already existing party
+  // generate room view
   function joinRoom()
   {
     require_once('model/party.php');
     $Party = new Party();
-
-    if (isset($_POST['code']) and !empty($_POST['code'])) {
-
-      $_POST['code'] = htmlspecialchars($_POST['code']);
-      $id = $Party->getIdGame($_POST['code']);
-
-      if (is_int($id)) {
-        $Party->registerPlayer($id, 0);
-        $view = new View("room");
-        $view->generate(null);
+    $Player = new Player();
+    $code = htmlspecialchars($_POST['code']);
+    if (isset($code) and !empty($code)) {
+      $myParty = $Party->getParty($code);
+      // Est-ce que la partie existe ?
+      if (!$myParty) {
+        $this->_viewOnError('Partie introuvable');
+        // A-t-elle commencé ?
+      } else if ($myParty['isInProgress'] == 1) {
+        $this->_viewOnError('La partie a déjà commencé');
+        // Arrivé ici, la partie existe
       } else {
-        $_SESSION['joinError'] = $id;
-        $view = new View("joinParty");
-        $view->generate(null);
+        $players = $Party->getPlayers($code);
+        // Est-elle pleine ?
+        if (count($players) === intval($myParty['nbMaxPlayers'])) {
+          $this->_viewOnError('La partie est complète');
+          // Si non, c'est OK on continue
+        } else {
+          $id = $myParty['idGame'];
+        }
       }
     } else {
-
-      $id = $Party->getRandomIdGame();
-
-      if (is_int($id)) {
-        $Party->registerPlayer($id, 0);
-        $view = new View("room");
-        $view->generate(null);
+      $myParty = $Party->getRandomGame();
+      if ($myParty) {
+        $id = $myParty['idGame'];
+        $code = $myParty['code'];
       } else {
-        $_SESSION['joinError'] = $id;
-        $view = new View("joinParty");
-        $view->generate(null);
+        $this->_viewOnError('Aucune partie n\'est disponible');
       };
     }
+    $Player->registerPlayer($id, 0);
+    setcookie('code', $code, time() + 365 * 24 * 3600, '/', null, false, true);
+    $_SESSION['code'] = $code;
+    $view = new View("room");
+    $view->generate($myParty);
+  }
+  // Affichage des vues en erreur
+  private function _viewOnError($errorMessage)
+  {
+    $_SESSION['joinError'] = $errorMessage;
+    $view = new View("joinParty");
+    $view->generate(null);
+    exit();
+  }
+
+  function nbPlayers($idGame)
+  {
+    require_once('model/party.php');
+    $Party = new Party();
+    $nb = $Party->getNbPlayers($idGame[0]);
+    echo $nb;
+  }
+
+  function nbMaxPlayers($idGame)
+  {
+    require_once('model/party.php');
+    $Party = new Party();
+    $nb = $Party->getNbMaxPlayers($idGame[0]);
+    echo $nb;
+  }
+
+  function getPlayers($idGame)
+  {
+    require_once('model/party.php');
+    $Party = new Party();
+    $players = $Party->getPlayers($idGame[0]);
+    $json = json_encode($players);
+    echo $json;
   }
 }

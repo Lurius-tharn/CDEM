@@ -13,3 +13,7 @@ $fmk->initRoute("forgotten-password", "forgotten-password", "playerController.ph
 
 $fmk->initRoute("create-room", "create-room", "partyController.php", "createRoom");
 $fmk->initRoute("join-room", "join-room", "partyController.php", "joinRoom");
+
+$fmk->initRoute("nb-players", "nb-players", "partyController.php", "nbPlayers/");
+$fmk->initRoute("nb-max-players", "nb-max-players", "partyController.php", "nbMaxPlayers/");
+$fmk->initRoute("get-players", "get-players", "partyController.php", "getPlayers/");

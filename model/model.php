@@ -16,6 +16,7 @@ abstract class Model
             $resultat = $this->getBdd()->prepare($sql);  // prepared query
             $resultat->execute($params);
         }
+
         return $resultat;
     }
 

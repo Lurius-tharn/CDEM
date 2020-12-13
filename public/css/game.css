@@ -198,7 +198,6 @@
 }
 
 .hidden {
-  transition: 1000ms;
   display: none;
 }
 
@@ -284,4 +283,80 @@
     column-gap: 4%;
     width: 98%;
   }
+}
+
+#waitContainer {
+  height: 60%;
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.element {
+  margin-right: 1em;
+  line-break: auto;
+  border-radius: 1em;
+  height: 6em;
+  width: 6em;
+  text-align: center;
+}
+.element:nth-child(2n) {
+  background-color: #d6dfff;
+}
+.element:nth-child(2n +1) {
+  background-color: #ffc6b1;
+}
+.element p {
+  position: relative;
+  top: 25%;
+  color: white;
+  transform: rotate(-40deg);
+}
+#nbPlayers {
+  font-size: 2em;
+  position: absolute;
+  top: 30%;
+}
+.vs {
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  position: relative;
+  top: 50%;
+}
+.king {
+  border: 1px solid #ffc156;
+}
+@media all and (max-width: 1200px) {
+  .element {
+      width: 5em;
+      height: 5em;
+  }
+  .vs {
+      font-size: 1em;
+      top: 35%;
+  }
+  #nbPlayers {
+      font-size: 1em;
+      position: absolute;
+      top: 33%;
+  }
+}
+@media all and (max-width: 710px) {
+  .element {
+      width: 4em;
+      height: 4em;
+      margin-bottom: 1em;
+  }
+  .element p {
+      top: 20%;
+      font-size: 0.7em;
+  }
+  .vs {
+      font-size: 0.5em;
+      top: 45%;
+  }
+#partyBlock h1{
+font-size: 2em;
+}
 }

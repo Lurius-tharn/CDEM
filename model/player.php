@@ -63,12 +63,44 @@ class Player extends Model
         return False;
     }
 
-    // Create an idPlayer for a non-connected player
-    public function createIdPlayer()
+    /* Fonction qui enregistre un joueur dans une partie
+    */
+    function registerPlayer(int $idGame, $isHost)
     {
-        $sql = 'SELECT idPlayer FROM player WHERE idPlayer = (SELECT MAX(idPlayer) FROM player)';
-        $id = $this->executeQuery($sql)->fetch();
-        $id = intval($id);
-        return ($id + 1000);
+        if ($this->isConnected()) {
+            $idPlayer =  $_SESSION['idPlayer'];
+        } else {
+            $idPlayer = trim(com_create_guid(), '{}');
+            $_SESSION['idPlayer'] =  $idPlayer;
+        }
+
+        $sql = 'INSERT INTO play(idGame, idPlayer, username, isHost)
+            VALUES(:idGame, :idPlayer, :username, :isHost)';
+
+        $params = array(
+            'idGame' => intval($idGame),
+            'idPlayer' => $idPlayer,
+            'username' => $_COOKIE['username'],
+            'isHost' => intval($isHost)
+        );
+        $this->executeQuery($sql, $params);
+        return $this->getUserFromPlay($idPlayer, intval($idGame));
+    }
+    function getUserFromPlay(string $guid,int $idGame){
+        $sql = 'SELECT * FROM play WHERE idPlayer=:idPlayer AND idGame=:idGame';
+        $params = array(
+            'idPlayer' => $guid,
+            'idGame' => $idGame
+        );
+        $result = $this->executeQuery($sql, $params)->fetch();
+        $result['account']=$this->getPlayer($guid);
+        return $result;
+    }
+    function getPlayer($guid)
+    {
+        $sql = 'SELECT * FROM player WHERE idPlayer=:idPlayer';
+        $params = array('idPlayer' => $guid);
+        $result = $this->executeQuery($sql, $params)->fetch();
+        return $result;
     }
 }

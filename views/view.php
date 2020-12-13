@@ -26,6 +26,7 @@ class View
         $player = new Player();
 
         // Generation of the common template using the specific part
+        // https://www.php-fig.org/psr/psr-2/
         if (!empty($this->css))
             $header = $this->generateFile('elements/header.php', array('title' => $this->title, 'css' => $this->css, 'connected' => $player->isConnected()), 'header');
         else

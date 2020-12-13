@@ -1,8 +1,8 @@
 <?php
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Past date
 
-/**
- * On inclue d'abord les fichiers nécessaires et on initialise la logique de routes
- */
+//On inclue d'abord les fichiers nécessaires et on initialise la logique de routes
 include("includes/routing.php");
 $fmk = new Routes();
 include("includes/routes.php");
@@ -17,6 +17,8 @@ if (isset($_GET["url"])) {
 $fmkRoute = $fmk->getControlleur($route);
 
 if ($fmk->isError404()) {
+    echo $route;
+    exit;
     require_once('errors/404.php');
     exit;
 }
