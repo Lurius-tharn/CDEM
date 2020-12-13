@@ -1,31 +1,30 @@
 <?php $title = 'Salle d\'attente' ?>
+<div class="myContainer">
+    <form id="myForm" action="game/" method="post" class="formCreate">
+        <div id="partyBlock">
+            <h1>En attente de joueurs...</h1>
+            <h2 id="nbPlayerText"></h2>
+            <div id="waitContainer">
 
-<form id="myForm" action="game/" method="post" class="formCreate">
-    <div id="partyBlock">
-        <h1>En attente de joueurs...</h1>
-        <h2 id="nbPlayerText"></h2>
-        <div id="waitContainer">
-
+            </div>
         </div>
-    </div>
-    
-    <div class="buttons">
-    <button class="button" type="button" name="button" onclick="window.location.href='/CDEM';">
-      <p>Retour</p>
-    </button>
-        <button class="button" type="submit" name="button">
-            <p id="actionGame"></p>
-        </button>
-    </div>
-</form>
 
+        <div class="buttons">
+            <button class="button" type="button" name="button" onclick="window.location.href='/CDEM';">
+                <p>Retour</p>
+            </button>
+            <button class="button" type="submit" name="button">
+                <p id="actionGame"></p>
+            </button>
+        </div>
+    </form>
+</div>
 <?php
 $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
 ?>
 
 
 <script>
-
     var myData = function() {};
     myData.init = function() {
         // dans le $data du contrôleurs sont passées 3 index :
@@ -79,19 +78,15 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
 
                     newDiv.style.position = "relative";
                     var couronne = document.createElement("img");
+                    couronne.classList.add("couronne");
                     couronne.setAttribute("src", "public/pictures/couronne.png");
-                    couronne.style.height = "1.5em";
-                    couronne.style.width = "auto";
-                    couronne.style.position = "absolute";
-                    couronne.style.left = "50%";
-                    couronne.style.top = "-2em";
-                    couronne.style.transform = "translateX(-50%)";
                     newDiv.appendChild(couronne);
                 }
 
                 newDiv.id = id;
 
                 var pic = document.createElement("p");
+                pic.classList.add("cdem");
                 pic.textContent = "CDEM.fun";
                 var Pseudo = document.createElement("div");
 
@@ -105,6 +100,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 if (myData.users[i]["isHost"] == 1 && idPlayer == myData.users[i]["idPlayer"]) {
                     document.getElementById("actionGame").innerHTML = "Lancer la partie";
                     document.getElementById("actionGame").parentElement.disabled = false;
+                    document.getElementById("actionGame").parentElement.classList.remove("stopHover");
                 }
             }
         }
@@ -114,9 +110,11 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         var actionGame = document.getElementById("actionGame");
         actionGame.innerHTML = "En attente de l'hôte";
         actionGame.parentElement.disabled = true;
+        actionGame.parentElement.classList.add("stopHover");
 
         document.getElementById("myForm").action += "<?= $data['code'] ?>";
         document.getElementById("connect").innerHTML = "<a> Code : " + "<?= $data['code'] ?>" + "</a>";
+        document.getElementById("connect").classList.remove("connectHover");
         myData.init();
     });
 </script>

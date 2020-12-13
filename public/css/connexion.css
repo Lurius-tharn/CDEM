@@ -20,6 +20,15 @@
   }
 }
 
+@media all and (max-height: 2000px) and (max-width: 1250px) {
+  body {
+    min-height: 1800px;
+  }
+  .button {
+    margin-bottom: 50px;
+  }
+}
+
 .connectblock {
   display: flex;
   flex-direction: column;
@@ -146,6 +155,7 @@ input {
   .button {
     width: 90%;
     margin: auto;
+    margin-bottom: 50px;
   }
 }
 

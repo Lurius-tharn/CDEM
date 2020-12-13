@@ -20,7 +20,7 @@
 <body>
     <header>
         <a id="logo" href="/CDEM"> cdem.fun</a>
-        <div id="connect">
+        <div id="connect" class='connectHover'>
             <div id="round"></div>
             <?php
             if ($connected) {

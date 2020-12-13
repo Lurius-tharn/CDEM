@@ -167,4 +167,20 @@ class GameController
     $json = json_encode($players);
     echo $json;
   }
+
+  public function playGame($code)
+  {
+    require_once('model/game.php');
+    $Game = new Game();
+    $code = htmlspecialchars($_POST['code']);
+
+    if (isset($code) and !empty($code)) {
+      //TODO
+    } else {
+      //TODO
+    }
+    //TODO
+    $view = new View("game");
+    $view->generate($myGame);
+  }
 }

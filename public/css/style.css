@@ -9,6 +9,7 @@ html {
   position: relative;
   display: flex;
   overflow: hidden scroll;
+  flex-wrap: wrap;
 }
 
 body {
@@ -119,6 +120,11 @@ header {
   }
 }
 
+.button:hover, .connectHover:hover {
+  filter: brightness(90%);
+  -webkit-filter: brightness(90%);
+}
+
 /********************************************* Homepage blocks part *********************************************/
 
 .blocks {
@@ -149,7 +155,7 @@ header {
 }
 
 @media all and (max-width: 700px) {
-  .blocks{
+  .blocks {
     flex-direction: column;
     align-items: center;
     column-gap: 0;
@@ -158,7 +164,7 @@ header {
   .block {
     width: 70%;
   }
-  .block:last-child{
+  .block:last-child {
     margin-bottom: 50px;
   }
 }

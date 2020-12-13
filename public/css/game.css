@@ -1,10 +1,13 @@
 /********************************************* Page part *********************************************/
+.myContainer {
+  display: flex;
+  width: 80%;
+}
 
 .formCreate, .joinPage {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  row-gap: 4%;
+  flex: 1;
 }
 
 @media all and (max-width: 1100px) {
@@ -14,10 +17,17 @@
 }
 
 @media all and (max-width: 700px) {
-  .formCreate, .joinPage {
+  .formCreate, .joinPage, .myContainer {
     width: 100%;
   }
 }
+
+@media all and (max-height: 2000px){
+  body {
+    min-height: 900px;
+  }
+}
+
 
 /****************************************** PartyBlock part ******************************************/
 
@@ -65,6 +75,16 @@
   }
   #partyBlock>h1 {
     font-size: 2.5em;
+  }
+}
+
+@media all and (max-height: 1200px) {
+  #partyBlock {
+    min-height: 643px;
+  }
+  .button{
+    min-height: 74px;
+    margin-top: 4%;
   }
 }
 
@@ -357,6 +377,22 @@
   left: 50%;
   top: -4em;
   transform: translateX(-50%);
+}
+
+.stopHover:hover {
+  filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+}
+
+.stopHover {
+ opacity: 0.3;
+ cursor: default;
+}
+
+@media all and (max-height: 1200px) {
+  .buttonRoom{
+    margin-top: 0%;
+  }
 }
 
 @media all and (max-width: 1510px) {
