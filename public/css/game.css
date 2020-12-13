@@ -39,6 +39,14 @@
   font-size: 3em;
   font-family: 'Montserrat', sans-serif;
   padding-top: 3%;
+  margin-top: 0;
+}
+#partyBlock>h2 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 2em;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 3em;
 }
 
 #joinError {
@@ -286,19 +294,17 @@
 }
 
 #waitContainer {
-  height: 60%;
+  flex: 1;
   width: 60%;
   display: flex;
+  column-gap: 4%;
+  align-items: flex-start;
   flex-wrap: wrap;
-  align-items: stretch;
 }
+
 .element {
-  margin-right: 1em;
-  line-break: auto;
-  border-radius: 1em;
-  height: 6em;
-  width: 6em;
-  text-align: center;
+  width: 100px;
+  height: 100px;
 }
 .element:nth-child(2n) {
   background-color: #d6dfff;
