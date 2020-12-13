@@ -1,20 +1,20 @@
 <?php $title = 'Salle d\'attente' ?>
 
-<form action="" method="post" class="formCreate">
+<form id="myForm" action="game/" method="post" class="formCreate">
     <div id="partyBlock">
-
         <h1>En attente de joueurs...</h1>
-        <p id="nbPlayerText"></p>
+        <h2 id="nbPlayerText"></h2>
         <div id="waitContainer">
 
         </div>
     </div>
+    
     <div class="buttons">
-        <button class="button" type="button" name="button" onclick="window.location.href='/CDEM';">
-            <p>Retour</p>
-        </button>
+    <button class="button" type="button" name="button" onclick="window.location.href='/CDEM';">
+      <p>Retour</p>
+    </button>
         <button class="button" type="submit" name="button">
-            <p>Lancer la partie</p>
+            <p id="actionGame"></p>
         </button>
     </div>
 </form>
@@ -25,56 +25,6 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
 
 
 <script>
-    // //renvoie les informations sur les joueurs
-    // async function getPlayers(code) {
-    //     return new Promise(function(resolve, reject) {
-    //         var reqPlayer = new XMLHttpRequest();
-
-    //         reqPlayer.onreadystatechange = function() {
-    //             if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    //                 resolve(JSON.parse(reqPlayer.responseText));
-    //             }
-    //         };
-
-    //         reqPlayer.open("GET", "get-players/" + code);
-    //         reqPlayer.send();
-    //     });
-    // }
-
-    // async function showPlayers() {
-
-    //     var code = document.getElementById('code').textContent.trim();
-    //     var nbPlayerText = document.getElementById('nbPlayerText');
-    //     var nbCurrent = await nbPlayers(code);
-    //     var nbMax = await nbMaxPlayers(code);
-
-    //     nbPlayerText.textContent = nbCurrent + "/" + nbMax;
-
-    //     var Container = document.getElementById("waitContainer");
-    //     while (Container.firstChild) {
-    //         Container.removeChild(Container.firstChild);
-    //     }
-
-    //     var players = await getPlayers(code);
-
-    //     for (var i = 0; i < nbCurrent; i++) {
-
-    //         var newDiv = document.createElement("div");
-    //         newDiv.className = "element";
-
-    //         var pic = document.createElement("p");
-    //         pic.textContent = "CDEM.fun";
-    //         var Pseudo = document.createElement("div");
-
-    //         Pseudo.className = "vs";
-    //         Pseudo.textContent = players[i + 1]["username"];
-    //         newDiv.appendChild(pic);
-    //         newDiv.appendChild(Pseudo);
-    //         Container.appendChild(newDiv);
-
-    //     }
-
-    // }
 
     var myData = function() {};
     myData.init = function() {
@@ -114,14 +64,29 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         // si oui, on ne fait rien
         // si non, on crée le nouvel élément du DOM
         var Container = document.getElementById("waitContainer");
+        var idPlayer = "<?= $_SESSION["idPlayer"] ?>";
+
         document.getElementById('nbPlayerText').textContent = this.nbUsers + "/" + this.nbMaxPlayers;
+
         for (var i = 0; i < this.nbUsers; i++) {
             var id = myData.users[i]["username"] + myData.users[i]["idPlayer"];
             if (!document.getElementById(id)) {
                 var newDiv = document.createElement("div");
                 newDiv.className = "element";
+
                 if (myData.users[i]["isHost"] == 1) {
                     newDiv.classList.add("king");
+
+                    newDiv.style.position = "relative";
+                    var couronne = document.createElement("img");
+                    couronne.setAttribute("src", "public/pictures/couronne.png");
+                    couronne.style.height = "1.5em";
+                    couronne.style.width = "auto";
+                    couronne.style.position = "absolute";
+                    couronne.style.left = "50%";
+                    couronne.style.top = "-2em";
+                    couronne.style.transform = "translateX(-50%)";
+                    newDiv.appendChild(couronne);
                 }
 
                 newDiv.id = id;
@@ -135,11 +100,23 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 newDiv.appendChild(pic);
                 newDiv.appendChild(Pseudo);
                 Container.appendChild(newDiv);
+
+
+                if (myData.users[i]["isHost"] == 1 && idPlayer == myData.users[i]["idPlayer"]) {
+                    document.getElementById("actionGame").innerHTML = "Lancer la partie";
+                    document.getElementById("actionGame").parentElement.disabled = false;
+                }
             }
         }
     }
 
     $(document).ready(function() {
+        var actionGame = document.getElementById("actionGame");
+        actionGame.innerHTML = "En attente de l'hôte";
+        actionGame.parentElement.disabled = true;
+
+        document.getElementById("myForm").action += "<?= $data['code'] ?>";
+        document.getElementById("connect").innerHTML = "<a> Code : " + "<?= $data['code'] ?>" + "</a>";
         myData.init();
     });
 </script>
