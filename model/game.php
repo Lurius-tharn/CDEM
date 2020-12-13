@@ -52,7 +52,7 @@ class Game extends Model
         return true;
     }
 
-    /* Fonction qui récupère une partie publique et non commencée
+    /* Fonction qui récupère une partie publique, non pleine et non commencée
     */
     public function getRandomGame()
     {
@@ -61,10 +61,20 @@ class Game extends Model
         if (!$resultCount || intval($resultCount['nb']) === 0) {
             return false;
         } else {
-            $numEnr = random_int(1, intval($resultCount['nb'])) - 1;
-            $sql = 'SELECT * FROM game WHERE isPublic = 1 AND isInProgress = 0 LIMIT 1 OFFSET ' . $numEnr;
-            $result = $this->executeQuery($sql)->fetch();
-            return $result;
+            $sql = 'SELECT * FROM game WHERE isPublic = 1 AND isInProgress = 0';
+            $results = $this->executeQuery($sql);
+            $nb = intval($resultCount['nb']);
+
+            for ($i = 0; $i < $nb; $i++) {
+                $result = $results->fetch();
+
+                if (intval(count($this->getPlayers($result['code']))) < intval($result['nbMaxPlayers'])) {
+                    $sql = 'SELECT * FROM game WHERE code = \'' . $result['code'] . '\'';
+                    $game = $this->executeQuery($sql)->fetch();
+                    return $game;
+                }
+            }
+            return false;
         }
     }
 

@@ -100,7 +100,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 myData.nbUsers = myData.users.length;
                 // lancer myData.draw
                 myData.draw();
-                if (parseInt(myData.nbUsers) < parseInt(myData.nbMaxPlayers)) {
+                if (parseInt(myData.nbUsers) <= parseInt(myData.nbMaxPlayers)) {
                     setTimeout(myData.get(), 1000);
                 }
             }
@@ -116,10 +116,14 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         var Container = document.getElementById("waitContainer");
         document.getElementById('nbPlayerText').textContent = this.nbUsers + "/" + this.nbMaxPlayers;
         for (var i = 0; i < this.nbUsers; i++) {
-            var id = myData.users[i]["username"];
+            var id = myData.users[i]["username"] + myData.users[i]["idPlayer"];
             if (!document.getElementById(id)) {
                 var newDiv = document.createElement("div");
                 newDiv.className = "element";
+                if (myData.users[i]["isHost"] == 1) {
+                    newDiv.classList.add("king");
+                }
+
                 newDiv.id = id;
 
                 var pic = document.createElement("p");
@@ -127,7 +131,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 var Pseudo = document.createElement("div");
 
                 Pseudo.className = "vs";
-                Pseudo.innerHTML = id;
+                Pseudo.innerHTML = myData.users[i]["username"];
                 newDiv.appendChild(pic);
                 newDiv.appendChild(Pseudo);
                 Container.appendChild(newDiv);

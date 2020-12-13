@@ -130,7 +130,7 @@ class GameController
       } else {
         $players = $Game->getPlayers($code);
         // Est-elle pleine ?
-        if (count($players) === intval($myGame['nbMaxPlayers'])) {
+        if (intval(count($players)) >= intval($myGame['nbMaxPlayers'])) {
           $this->_viewOnError('La partie est complète');
           // Si non, c'est OK on continue
         } else {
