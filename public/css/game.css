@@ -272,13 +272,19 @@
   box-shadow: 0px 7px rgba(46, 204, 113, .2);
 }
 
-@media all and (max-width: 1150px) {
+@media all and (max-width: 1350px) {
+  .button p {
+    font-size: 2em;
+  }
+}
+
+@media all and (max-width: 1100px) {
   .buttons {
     width: 90%;
     column-gap: 6%;
   }
   .button p {
-    font-size: 2em;
+    font-size: 1.9em;
   }
 }
 
@@ -309,6 +315,7 @@
 .element {
   width: 120px;
   height: 120px;
+  border-radius: 9%;
 }
 .element:nth-child(2n) {
   background-color: #d6dfff;
@@ -316,12 +323,15 @@
 .element:nth-child(2n +1) {
   background-color: #ffc6b1;
 }
-.element p {
+.element .cdem{
   position: relative;
+  text-align: center;
   top: 25%;
   color: white;
-  transform: rotate(-40deg);
+  transform: rotate(-45deg);
+  font-size: 1.5em;
 }
+
 #nbPlayers {
   font-size: 2em;
   position: absolute;
@@ -335,18 +345,58 @@
   top: 60%;
   text-align: center;
 }
+
 .king {
   border: 1px solid #ffc156;
+}
+
+.couronne {
+  height: 4em;
+  width: auto;
+  position: absolute;
+  left: 50%;
+  top: -4em;
+  transform: translateX(-50%);
+}
+
+@media all and (max-width: 1510px) {
+  .element {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .element {
+    width: 73px;
+    height: 73px;
+  }
+  .couronne {
+    height: 3.5em;
+    top: -3.5em;
+  }
 }
 
 @media all and (max-width: 1100px) {
   #waitContainer {
     width: 80%;
   }
+  .couronne {
+    height: 3em;
+    top: -3em;
+  }
 }
 
 @media all and (max-width: 700px) {
   #waitContainer {
     width: 90%;
+  }
+  .element {
+    width: 70px;
+    height: 70px;
+  }
+  .couronne {
+    height: 2em;
+    top: -2em;
   }
 }

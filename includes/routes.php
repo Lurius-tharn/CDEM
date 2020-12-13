@@ -15,3 +15,6 @@ $fmk->initRoute("create-room", "create-room", "gameController.php", "createRoom"
 $fmk->initRoute("join-room", "join-room", "gameController.php", "joinRoom");
 
 $fmk->initRoute("get-players", "get-players", "gameController.php", "getPlayers/");
+
+
+$fmk->initRoute("game", "game", "gameController.php", "playGame/");
