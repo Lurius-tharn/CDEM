@@ -3,7 +3,6 @@ session_start();
 
 abstract class Model
 {
-
     // Object PDO access to the DB
     private $bdd;
 

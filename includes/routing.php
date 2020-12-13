@@ -5,7 +5,6 @@
  */
 class Routes
 {
-
     /**
      * un tableau contenant toutes les données de chaque route
      * @var array 

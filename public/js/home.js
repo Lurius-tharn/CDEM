@@ -8,8 +8,8 @@ join.href = "delete-username";
 function isCharSet() {
 
     if (input.value.trim() != "") {
-        create.href = 'create-party/' + document.getElementById('pseudo').value;
-        join.href = 'join-party/' + document.getElementById('pseudo').value;
+        create.href = 'create-game/' + document.getElementById('pseudo').value;
+        join.href = 'join-game/' + document.getElementById('pseudo').value;
     } else {
         create.href = "delete-username";
         join.href = "delete-username";

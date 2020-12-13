@@ -26,19 +26,19 @@ class View
         $player = new Player();
 
         // Generation of the common template using the specific part
-        // https://www.php-fig.org/psr/psr-2/
-        if (!empty($this->css))
+        if (!empty($this->css)) {
             $header = $this->generateFile('elements/header.php', array('title' => $this->title, 'css' => $this->css, 'connected' => $player->isConnected()), 'header');
-        else
+        } else {
             $header = $this->generateFile('elements/header.php', array('title' => $this->title, 'connected' => $player->isConnected()), 'header');
+        }
 
         $core = $this->generateFile('elements/core.php', array('data' => $data), 'core');
 
-        if (!empty($this->js))
+        if (!empty($this->js)) {
             $footer = $this->generateFile('elements/footer.php', array('js' => $this->js), 'footer');
-        else
+        } else {
             $footer = $this->generateFile('elements/footer.php', null, 'footer');
-
+        }
         echo ($header . $core . $footer);
     }
 
@@ -47,19 +47,21 @@ class View
     {
         if (file_exists($file)) {
             // Makes the items in the $data table accessible in the view
-            if (!empty($data))
+            if (!empty($data)) {
                 extract($data);
+            }
             ob_start();
             require $file;
 
             if ($type == 'file') {
                 $this->title = $title;
-                if (isset($css) and !empty($css))
+                if (isset($css) and !empty($css)) {
                     $this->css = $css;
-                if (isset($js) and !empty($js))
+                }
+                if (isset($js) and !empty($js)) {
                     $this->js = $js;
+                }
             }
-
             return ob_get_clean();
         } else {
             throw new Exception("Fichier '$file' introuvable");

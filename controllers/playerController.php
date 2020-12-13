@@ -5,7 +5,6 @@ require_once('views/view.php');
 
 class PlayerController
 {
-
   public function __construct()
   {
   }

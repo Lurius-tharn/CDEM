@@ -1,6 +1,6 @@
 <?php $title = 'Salle d\'attente' ?>
 
-<form action="Party-room" method="post" class="formCreate">
+<form action="" method="post" class="formCreate">
     <div id="partyBlock">
 
         <h1>En attente de joueurs...</h1>
@@ -18,7 +18,6 @@
         </button>
     </div>
 </form>
-<div id="code" class="hidden"><?= $_SESSION['code'] ?></div>
 
 <?php
 $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
@@ -101,7 +100,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 myData.nbUsers = myData.users.length;
                 // lancer myData.draw
                 myData.draw();
-                if(parseInt(myData.nbUsers) < parseInt(myData.nbMaxPlayers)){
+                if (parseInt(myData.nbUsers) < parseInt(myData.nbMaxPlayers)) {
                     setTimeout(myData.get(), 1000);
                 }
             }
@@ -128,7 +127,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 var Pseudo = document.createElement("div");
 
                 Pseudo.className = "vs";
-                Pseudo.textContent = id;
+                Pseudo.innerHTML = id;
                 newDiv.appendChild(pic);
                 newDiv.appendChild(Pseudo);
                 Container.appendChild(newDiv);

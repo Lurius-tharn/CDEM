@@ -14,19 +14,20 @@ class Player extends Model
 
         while ($emailPlayer = $result->fetch()) {
             if (strcmp($emailPlayer['email'], $email) == 0) {
-                return False;
+                return false;
             }
         }
 
-        $sql = 'INSERT INTO player(email, pwd) VALUES(:email, :pwd)';
+        $sql = 'INSERT INTO player(idPlayer, email, pwd) VALUES(:idPlayer, :email, :pwd)';
         $params = array(
+            'idPlayer' => trim(com_create_guid(), '{}'),
             'email' => $email,
             'pwd' => $hash
         );
 
         $this->executeQuery($sql, $params);
         $this->connectPlayer($email, $pwd);
-        return True;
+        return true;
     }
 
     // Connect a player
@@ -37,11 +38,11 @@ class Player extends Model
         while ($Player = $players->fetch()) {
             if (strcmp($Player['email'], $email) == 0) {
                 if (password_verify($pwd, $Player['pwd'])) {
-                    $_SESSION['isConnected'] = True;
+                    $_SESSION['isConnected'] = true;
                     $_SESSION['idPlayer'] = $Player['idPlayer'];
-                    return True;
+                    return true;
                 }
-                return False;
+                return false;
             }
         }
     }
@@ -49,23 +50,26 @@ class Player extends Model
     // Disconnect a player
     public function disconnectPlayer()
     {
-        if (isset($_SESSION['isConnected']) and !empty($_SESSION['isConnected']))
+        if (isset($_SESSION['isConnected']) and !empty($_SESSION['isConnected'])) {
             unset($_SESSION['isConnected']);
-        if (isset($_SESSION['idPlayer']) and !empty($_SESSION['idPlayer']))
+        }
+        if (isset($_SESSION['idPlayer']) and !empty($_SESSION['idPlayer'])) {
             unset($_SESSION['idPlayer']);
+        }
     }
 
     // Check if a player is connected
     public function isConnected()
     {
-        if (isset($_SESSION['isConnected']) and !empty($_SESSION['isConnected']))
+        if (isset($_SESSION['isConnected']) and !empty($_SESSION['isConnected'])) {
             return $_SESSION['isConnected'];
-        return False;
+        }
+        return false;
     }
 
     /* Fonction qui enregistre un joueur dans une partie
     */
-    function registerPlayer(int $idGame, $isHost)
+    public function registerPlayer($code, $username, $isHost)
     {
         if ($this->isConnected()) {
             $idPlayer =  $_SESSION['idPlayer'];
@@ -74,29 +78,32 @@ class Player extends Model
             $_SESSION['idPlayer'] =  $idPlayer;
         }
 
-        $sql = 'INSERT INTO play(idGame, idPlayer, username, isHost)
-            VALUES(:idGame, :idPlayer, :username, :isHost)';
+        $sql = 'INSERT INTO play(code, idPlayer, username, isHost)
+            VALUES(:code, :idPlayer, :username, :isHost)';
 
         $params = array(
-            'idGame' => intval($idGame),
+            'code' => $code,
             'idPlayer' => $idPlayer,
-            'username' => $_COOKIE['username'],
+            'username' => $username,
             'isHost' => intval($isHost)
         );
         $this->executeQuery($sql, $params);
-        return $this->getUserFromPlay($idPlayer, intval($idGame));
+        return $this->getPlayerFromPlay($idPlayer, $code);
     }
-    function getUserFromPlay(string $guid,int $idGame){
-        $sql = 'SELECT * FROM play WHERE idPlayer=:idPlayer AND idGame=:idGame';
+
+    public function getPlayerFromPlay(string $guid, string $code)
+    {
+        $sql = 'SELECT * FROM play WHERE idPlayer=:idPlayer AND code=:code';
         $params = array(
             'idPlayer' => $guid,
-            'idGame' => $idGame
+            'code' => $code
         );
         $result = $this->executeQuery($sql, $params)->fetch();
-        $result['account']=$this->getPlayer($guid);
+        $result['account'] = $this->getPlayer($guid);
         return $result;
     }
-    function getPlayer($guid)
+
+    public function getPlayer($guid)
     {
         $sql = 'SELECT * FROM player WHERE idPlayer=:idPlayer';
         $params = array('idPlayer' => $guid);

@@ -36,9 +36,9 @@ else if (isset($_POST['email']) and !empty($_POST['email']) and isset($_POST['pw
     $_POST['pwd'] = htmlspecialchars($_POST['pwd']);
 
     $Player = new Player();
-    if (!$Player->connectPlayer($_POST['email'], $_POST['pwd']))
+    if (!$Player->connectPlayer($_POST['email'], $_POST['pwd'])) {
         $_SESSION['connectError'] = 'Email ou mot de passe incorrect';
-    else {
+    } else {
         header('Location: /CDEM');
         exit;
     }

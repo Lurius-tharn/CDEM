@@ -34,13 +34,13 @@ $actions = explode('/', $fmkRoute[1]);
 $methodName = $actions[0];
 array_shift($actions);
 
-if ($class == 'HomeController')
+if ($class == 'HomeController') {
     $object = new HomeController();
-else if ($class == 'PartyController')
-    $object = new PartyController();
-else if ($class == 'PlayerController')
+} else if ($class == 'GameController') {
+    $object = new GameController();
+} else if ($class == 'PlayerController') {
     $object = new PlayerController();
-
+}
 
 if (isset($actions) and !empty($actions)) {
     $methodVariable = array(array($object, $methodName), array($actions));

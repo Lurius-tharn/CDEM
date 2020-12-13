@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 29 nov. 2020 à 18:41
+-- Généré le : Dim 13 déc. 2020 à 13:23
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -29,15 +29,13 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `game`;
 CREATE TABLE IF NOT EXISTS `game` (
-  `idGame` int(11) NOT NULL AUTO_INCREMENT,
-  `nbPlayers` int(11) NOT NULL,
+  `code` varchar(6) NOT NULL,
   `nbMaxPlayers` int(11) NOT NULL,
   `scoreMax` int(11) NOT NULL,
   `isInProgress` tinyint(1) NOT NULL,
   `isPublic` tinyint(1) NOT NULL,
-  `code` varchar(6) NOT NULL,
-  PRIMARY KEY (`idGame`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -69,12 +67,12 @@ INSERT INTO `minigame` (`idMinigame`, `name`, `timeMax`) VALUES
 DROP TABLE IF EXISTS `play`;
 CREATE TABLE IF NOT EXISTS `play` (
   `idPlay` int(11) NOT NULL AUTO_INCREMENT,
-  `idGame` int(11) NOT NULL,
-  `idPlayer` int(11) NOT NULL,
+  `code` varchar(6) NOT NULL,
+  `idPlayer` varchar(50) NOT NULL,
   `username` varchar(255) NOT NULL,
   `isHost` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPlay`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -84,11 +82,11 @@ CREATE TABLE IF NOT EXISTS `play` (
 
 DROP TABLE IF EXISTS `player`;
 CREATE TABLE IF NOT EXISTS `player` (
-  `idPlayer` int(11) NOT NULL AUTO_INCREMENT,
+  `idPlayer` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   PRIMARY KEY (`idPlayer`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
