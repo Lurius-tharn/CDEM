@@ -87,4 +87,11 @@ class Game extends Model
 
         return $result;
     }
+
+    /* Fonction qui lance une partie
+    */
+    public function started($code)
+    {
+        
+    }
 }
