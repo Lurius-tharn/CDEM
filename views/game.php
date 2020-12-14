@@ -1,1 +1,1 @@
-<?php echo 'coucou'
+<?php $title = 'CDEM.fun' ?>

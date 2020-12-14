@@ -91,6 +91,20 @@ class Player extends Model
         return $this->getPlayerFromPlay($idPlayer, $code);
     }
 
+    /* Fonction qui vérifie si un joueur est déjà dans une partie
+    */
+    public function isRegister($code, $username)
+    {
+        $sql = 'SELECT * FROM play WHERE username=:username AND code=:code';
+        $params = array(
+            'username' => $username,
+            'code' => $code
+        );
+        $result = $this->executeQuery($sql, $params)->fetch();
+
+        return $result;
+    }
+
     /* Fonction qui supprime un joueur d'une partie
     */
     public function deletePlayer($idPlayer, $code)

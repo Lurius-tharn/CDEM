@@ -84,8 +84,7 @@ class GameController
 
       $Player->registerPlayer($myGame['code'], $_COOKIE['username'], 1);
 
-      $view = new View("room");
-      $view->generate($params);
+      header('Location: room/' . $code);
     } else {
       $view = new View("createGame");
       $view->generate(null);
@@ -111,14 +110,19 @@ class GameController
 
   // join an already existing game
   // generate room view
-  public function joinRoom()
+  public function joinRoom($ParamCode = null)
   {
     require_once('model/game.php');
     $Game = new Game();
     $Player = new Player();
-    $code = htmlspecialchars($_POST['code']);
+    $code = null;
+
+    if (isset($_POST['code'])) {
+      $code = htmlspecialchars($_POST['code']);
+    }
 
     if (isset($code) and !empty($code)) {
+
       $myGame = $Game->getGame($code);
       // Est-ce que la partie existe ?
       if (!$myGame) {
@@ -135,19 +139,34 @@ class GameController
           // Si non, c'est OK on continue
         } else {
           $code = $myGame['code'];
+          $Player->registerPlayer($code, $_COOKIE['username'], 0);
+          header('Location: room/' . $code);
         }
       }
-    } else {
+    } elseif ($ParamCode != null and isset($_COOKIE['username'])) {
+      if ($Player->isRegister($ParamCode, $_COOKIE['username']) == null) {
+        require_once('errors/404.php');
+        exit;
+      };
+      $myGame = $Game->getGame($ParamCode);
+      if (!$myGame) {
+        $this->_viewOnError('Aucune partie n\'est disponible');
+      }
+      $view = new View("room");
+      $view->generate($myGame);
+    } elseif ($ParamCode == null) {
       $myGame = $Game->getRandomGame();
       if ($myGame) {
         $code = $myGame['code'];
+        $Player->registerPlayer($code, $_COOKIE['username'], 0);
+        header('Location: room/' . $code);
       } else {
         $this->_viewOnError('Aucune partie n\'est disponible');
       };
+    } else {
+      require_once('errors/404.php');
+      exit;
     }
-    $Player->registerPlayer($code, $_COOKIE['username'], 0);
-    $view = new View("room");
-    $view->generate($myGame);
   }
 
   // Affichage des vues en erreur
@@ -168,16 +187,20 @@ class GameController
     echo $json;
   }
 
-  public function playGame($code)
+  public function playGame()
   {
     require_once('model/game.php');
     $Game = new Game();
-    $code = htmlspecialchars($_POST['code']);
+
+    if (isset($_POST['code'])) {
+      $code = htmlspecialchars($_POST['code']);
+    }
 
     if (isset($code) and !empty($code)) {
-      //TODO
+      $myGame = $Game->getGame($code);
     } else {
-      //TODO
+      require_once('errors/404.php');
+      exit;
     }
     //TODO
     $view = new View("game");
@@ -208,6 +231,13 @@ class GameController
       require_once('model/game.php');
       $Game = new Game();
       $Game->newHost($params[0]);
+    }
+  }
+
+  public function room($code)
+  {
+    if (isset($code[0]) and !empty($code[0])) {
+      $this->joinRoom($code[0]);
     }
   }
 }

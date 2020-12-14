@@ -13,10 +13,11 @@ $fmk->initRoute("forgotten-password", "forgotten-password", "playerController.ph
 
 $fmk->initRoute("create-room", "create-room", "gameController.php", "createRoom");
 $fmk->initRoute("join-room", "join-room", "gameController.php", "joinRoom");
+$fmk->initRoute("room", "room", "gameController.php", "room/");
 
 $fmk->initRoute("get-players", "get-players", "gameController.php", "getPlayers/");
 $fmk->initRoute("delete-player", "delete-player", "gameController.php", "deletePlayer/");
 $fmk->initRoute("delete-game", "delete-game", "gameController.php", "deleteGame/");
 $fmk->initRoute("new-host", "new-host", "gameController.php", "newHost/");
 
-$fmk->initRoute("game", "game", "gameController.php", "playGame/");
+$fmk->initRoute("game", "game", "gameController.php", "playGame");

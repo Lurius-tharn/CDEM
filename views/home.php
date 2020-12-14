@@ -1,4 +1,4 @@
-<?php $title = "cdem.fun" ?>
+<?php $title = "CDEM.fun" ?>
 
 <div id="container2">
   <input type="text" name="pseudo" id="pseudo" class="element" placeholder="PSEUDO" size="255" maxlength="15" value=<?php echo '"' . $username . '"' ?> onchange="javascript:isCharSet()"/>

@@ -17,8 +17,6 @@ if (isset($_GET["url"])) {
 $fmkRoute = $fmk->getControlleur($route);
 
 if ($fmk->isError404()) {
-    echo $route;
-    exit;
     require_once('errors/404.php');
     exit;
 }

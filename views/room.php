@@ -1,6 +1,7 @@
 <?php $title = 'Salle d\'attente' ?>
 <div class="myContainer">
-    <form id="myForm" action="game/" method="post" class="formCreate">
+    <form id="myForm" action="game" method="post" class="formCreate">
+        <input type="hidden" name="code" value="<?= $data['code'] ?>"></input>
         <div id="partyBlock">
             <h1>En attente de joueurs...</h1>
             <h2 id="nbPlayerText"></h2>
@@ -108,12 +109,16 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 newDiv.appendChild(pic);
                 newDiv.appendChild(Pseudo);
                 Container.appendChild(newDiv);
+            }
 
-
-                if (myData.users[i]["isHost"] == 1 && idPlayer == myData.users[i]["idPlayer"]) {
-                    document.getElementById("actionGame").innerHTML = "Lancer la partie";
+            if (myData.users[i]["isHost"] == 1 && idPlayer == myData.users[i]["idPlayer"]) {
+                document.getElementById("actionGame").innerHTML = "Lancer la partie";
+                if (parseInt(myData.nbUsers) >= 3) {
                     document.getElementById("actionGame").parentElement.disabled = false;
                     document.getElementById("actionGame").parentElement.classList.remove("stopHover");
+                } else {
+                    document.getElementById("actionGame").parentElement.disabled = true;
+                    document.getElementById("actionGame").parentElement.classList.add("stopHover");
                 }
             }
         }
@@ -125,29 +130,28 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         actionGame.parentElement.disabled = true;
         actionGame.parentElement.classList.add("stopHover");
 
-        document.getElementById("myForm").action += "<?= $data['code'] ?>";
         document.getElementById("connect").innerHTML = "<a> Code : " + "<?= $data['code'] ?>" + "</a>";
         document.getElementById("connect").classList.remove("connectHover");
 
         window.addEventListener('beforeunload', function(event) {
-            // if (myData.nbUsers <= 1) {
-            //     var reqDelete = new XMLHttpRequest();
-            //     reqDelete.open("POST", "delete-game/<?= $data['code'] ?>");
-            //     reqDelete.send();
-            // } else {
-            //     for (var i = 0; i < myData.nbUsers; i++) {
-            //         if (myData.users[i]["isHost"] == 1 && idPlayer == myData.users[i]["idPlayer"]) {
-            //             var reqHost = new XMLHttpRequest();
-            //             reqHost.open("POST", "new-host/<?= $data['code'] ?>");
-            //             reqHost.send();
-            //             break;
-            //         }
-            //     }
-            // }
+            if (myData.nbUsers <= 1) {
+                var reqDelete = new XMLHttpRequest();
+                reqDelete.open("POST", "delete-game/<?= $data['code'] ?>");
+                reqDelete.send();
+            } else {
+                for (var i = 0; i < myData.nbUsers; i++) {
+                    if (myData.users[i]["isHost"] == 1 && '<?= $_SESSION["idPlayer"] ?>' == myData.users[i]["idPlayer"]) {
+                        var reqHost = new XMLHttpRequest();
+                        reqHost.open("POST", "new-host/<?= $data['code'] ?>");
+                        reqHost.send();
+                        break;
+                    }
+                }
+            }
 
-            // var reqLeave = new XMLHttpRequest();
-            // reqLeave.open("POST", "delete-player/<?= $_SESSION["idPlayer"] ?>/<?= $data['code'] ?>");
-            // reqLeave.send();
+            var reqLeave = new XMLHttpRequest();
+            reqLeave.open("POST", "delete-player/<?= $_SESSION["idPlayer"] ?>/<?= $data['code'] ?>");
+            reqLeave.send();
         });
 
         myData.init();
