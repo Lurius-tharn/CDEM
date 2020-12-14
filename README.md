@@ -1,5 +1,4 @@
-# CDEM
-_(juste en dessous des badges sympatiques à placer)_
+# CDEM.fun
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
 
@@ -12,36 +11,23 @@ Ce projet est un projet académique nous permettant de monter en compétences da
 
 Ce qu'il est requis pour commencer avec votre projet...
 
-- Wampserver (ou équivalent)
-- Un navigateur web
-- Un ordinateur (optimé sur PC)
+* Wampserver (ou équivalent)
+* Un navigateur web
+* Un ordinateur (optimé sur PC)
 
 ### Installation
 
-- Télécharger le code directement depuis le repos github.
-
-
-_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
-
-
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+* Télécharger le code directement depuis le repos github.
 
 ## Démarrage
 
-- Placer le contenu du dossier télécharger dans le répertoire ``<un répertoire>/Wamp64/www/``
-- Démarrer le serveur
+* Placer le contenu du dossier télécharger dans le répertoire ``<un répertoire>/Wamp64/www/``
+* Démarrer le serveur
 
 ## Fabriqué avec
 
-Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
-
-_exemples :_
-* [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
 * [Atom](https://atom.io/) - Editeur de textes
-
-## Contributing
-
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
+* [VisualCode](https://code.visualstudio.com/) - Editeur de textes
 
 ## Versions
 **Dernière version stable :** 1.0
