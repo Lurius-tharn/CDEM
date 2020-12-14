@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 14 déc. 2020 à 19:40
+-- Généré le : lun. 14 déc. 2020 à 19:52
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `minigame` (
   `name` varchar(255) NOT NULL,
   `timeMax` time NOT NULL,
   PRIMARY KEY (`idMinigame`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `minigame`
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `play` (
   `username` varchar(255) NOT NULL,
   `isHost` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPlay`)
-) ENGINE=InnoDB AUTO_INCREMENT=973 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=978 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `play_minigame` (
   `endDate` timestamp NULL DEFAULT NULL,
   `num` int(11) NOT NULL,
   PRIMARY KEY (`idPlayMinigame`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

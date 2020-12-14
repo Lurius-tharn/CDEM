@@ -64,7 +64,20 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 // lancer myData.draw
                 myData.draw();
                 if (parseInt(myData.nbUsers) <= parseInt(myData.nbMaxPlayers)) {
-                    setTimeout(myData.get(), 1000);
+                    var reqStarted = new XMLHttpRequest();
+                    reqStarted.onreadystatechange = function() {
+                        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                            var inProgress = reqStarted.responseText;
+                            if (parseInt(inProgress) == 1) {
+                                document.getElementById("myForm").submit();
+                            } else {
+                                setTimeout(myData.get(), 1000);
+                            }
+                        }
+                    }
+
+                    reqStarted.open("GET", "in-progress/<?= $data['code'] ?>");
+                    reqStarted.send();
                 }
             }
         };
@@ -133,7 +146,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         document.getElementById("connect").innerHTML = "<a> Code : " + "<?= $data['code'] ?>" + "</a>";
         document.getElementById("connect").classList.remove("connectHover");
 
-        window.addEventListener('beforeunload', function(event) {
+        /*window.addEventListener('beforeunload', function(event) {
             if (myData.nbUsers <= 1) {
                 var reqDelete = new XMLHttpRequest();
                 reqDelete.open("POST", "delete-game/<?= $data['code'] ?>");
@@ -152,7 +165,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
             var reqLeave = new XMLHttpRequest();
             reqLeave.open("POST", "delete-player/<?= $_SESSION["idPlayer"] ?>/<?= $data['code'] ?>");
             reqLeave.send();
-        });
+        });*/
 
         myData.init();
     });

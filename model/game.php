@@ -92,6 +92,21 @@ class Game extends Model
     */
     public function started($code)
     {
+        $sql = 'UPDATE game SET isInProgress = 1 WHERE code =:code';
+        $params = array('code' => $code);
+
+        $this->executeQuery($sql, $params);
+    }
+
+    /* Fonction qui détermine si une partie a commencé
+    */
+    public function isInProgress($code)
+    {
+        $sql = 'SELECT isInProgress FROM game WHERE code =:code';
+        $params = array('code' => $code);
+
+        $result = $this->executeQuery($sql, $params)->fetch();
+        return intval($result[0]);
     }
 
     /* Fonction qui supprime une partie

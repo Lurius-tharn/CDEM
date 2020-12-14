@@ -202,9 +202,18 @@ class GameController
       require_once('errors/404.php');
       exit;
     }
-    //TODO
+    $Game->started($code);
     $view = new View("game");
     $view->generate($myGame);
+  }
+
+  public function isInProgress($code)
+  {
+    require_once('model/game.php');
+    $Game = new Game();
+    if (isset($code[0]) and !empty($code[0])) {
+      echo $Game->isInProgress($code[0]);
+    }
   }
 
   public function deletePlayer($params)
