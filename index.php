@@ -38,6 +38,8 @@ if ($class == 'HomeController') {
     $object = new GameController();
 } else if ($class == 'PlayerController') {
     $object = new PlayerController();
+} else if ($class == 'MiniGameController') {
+    $object = new MiniGameController();
 }
 
 if (isset($actions) and !empty($actions)) {

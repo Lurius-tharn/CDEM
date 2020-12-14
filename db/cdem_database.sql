@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 13 déc. 2020 à 13:23
+-- Généré le : lun. 14 déc. 2020 à 19:40
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -49,14 +49,15 @@ CREATE TABLE IF NOT EXISTS `minigame` (
   `name` varchar(255) NOT NULL,
   `timeMax` time NOT NULL,
   PRIMARY KEY (`idMinigame`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `minigame`
 --
 
 INSERT INTO `minigame` (`idMinigame`, `name`, `timeMax`) VALUES
-(1, 'Press the key', '00:00:00');
+(1, 'Press the key', '00:00:00'),
+(2, 'Clicker', '00:01:00');
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `play` (
   `username` varchar(255) NOT NULL,
   `isHost` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPlay`)
-) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=973 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -96,13 +97,15 @@ CREATE TABLE IF NOT EXISTS `player` (
 
 DROP TABLE IF EXISTS `play_minigame`;
 CREATE TABLE IF NOT EXISTS `play_minigame` (
+  `idPlayMinigame` int(11) NOT NULL AUTO_INCREMENT,
   `idPlay` int(11) NOT NULL,
   `idMinigame` int(11) NOT NULL,
   `score` int(11) NOT NULL,
-  `startDate` timestamp NOT NULL,
-  `endDate` timestamp NOT NULL,
-  PRIMARY KEY (`idPlay`,`idMinigame`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `startDate` timestamp NULL DEFAULT NULL,
+  `endDate` timestamp NULL DEFAULT NULL,
+  `num` int(11) NOT NULL,
+  PRIMARY KEY (`idPlayMinigame`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

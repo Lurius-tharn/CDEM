@@ -21,3 +21,7 @@ $fmk->initRoute("delete-game", "delete-game", "gameController.php", "deleteGame/
 $fmk->initRoute("new-host", "new-host", "gameController.php", "newHost/");
 
 $fmk->initRoute("game", "game", "gameController.php", "playGame");
+$fmk->initRoute("get-rank", "get-rank", "miniGameController.php", "getRankMiniGame/");
+$fmk->initRoute("play-minigame", "play-minigame", "miniGameController.php", "playMinigame/");
+$fmk->initRoute("start-minigame", "start-minigame", "miniGameController.php", "playerStartMG/");
+$fmk->initRoute("end-minigame", "end-minigame", "miniGameController.php", "playerEndMG/");
