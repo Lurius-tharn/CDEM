@@ -94,4 +94,38 @@ class Game extends Model
     {
         
     }
+
+    /* Fonction qui supprime une partie
+    */
+    public function deleteGame($code)
+    {
+        $sql = 'DELETE FROM game WHERE code =:code';
+        $params = array(
+            'code' => $code
+        );
+        $this->executeQuery($sql, $params);
+    }
+
+    /* Fonction qui sélectionne un nouvel hôte
+    */
+    public function newHost($code)
+    {
+        $sql = 'SELECT * FROM play WHERE code = :code AND isHost = 0';
+        $params = array('code' => $code);
+
+        $result = $this->executeQuery($sql, $params)->fetch();
+        $idPlayer = $result['idPlayer'];
+
+        $sql = 'UPDATE play SET isHost = 0 WHERE isHost = 1 AND code =:code';
+        $params = array( 'code' => $code);
+        $this->executeQuery($sql, $params);
+
+        $sql = 'UPDATE play SET isHost = 1 WHERE code =:code AND idPlayer =:idPlayer';
+        $params = array(
+            'code' => $code,
+            'idPlayer' => $idPlayer
+        );
+
+        $this->executeQuery($sql, $params);
+    }
 }

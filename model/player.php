@@ -91,6 +91,19 @@ class Player extends Model
         return $this->getPlayerFromPlay($idPlayer, $code);
     }
 
+    /* Fonction qui supprime un joueur d'une partie
+    */
+    public function deletePlayer($idPlayer, $code)
+    {
+        $sql = 'DELETE FROM play WHERE idPlayer =:idPlayer AND code =:code';
+
+        $params = array(
+            'idPlayer' => $idPlayer,
+            'code' => $code
+        );
+        $this->executeQuery($sql, $params);
+    }
+
     public function getPlayerFromPlay(string $guid, string $code)
     {
         $sql = 'SELECT * FROM play WHERE idPlayer=:idPlayer AND code=:code';

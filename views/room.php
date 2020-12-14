@@ -41,10 +41,23 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         reqPlayer.onreadystatechange = function() {
             if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
                 var tempData = JSON.parse(reqPlayer.responseText);
-                console.log(tempData);
                 // Vérifier qu'il n'y a pas de users qui ont disparus dans myData.users
                 // -- si c'est le cas, les supprimer de myData.users ET supprimer les éléments du DOM qui les concernents
-                // Remplacer myData.users par tempData 
+                // Remplacer myData.users par tempData
+
+                for (var i = 0; i < myData.nbUsers; i++) {
+                    var id = myData.users[i]["username"] + myData.users[i]["idPlayer"];
+                    var exist = false;
+                    for (var j = 0; j < tempData.length; j++) {
+                        if (tempData[j]["username"] + tempData[j]["idPlayer"] == id && myData.users[i]["isHost"] == tempData[j]["isHost"]) {
+                            exist = true;
+                        }
+                    }
+                    if (!exist) {
+                        document.getElementById(id).remove();
+                    }
+                }
+
                 myData.users = tempData;
                 myData.nbUsers = myData.users.length;
                 // lancer myData.draw
@@ -57,7 +70,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         reqPlayer.open("GET", "get-players/<?= $data['code'] ?>");
         reqPlayer.send();
 
-    }
+    };
     myData.draw = function() {
         // vérifier si l'élément du DOM existe déjà
         // si oui, on ne fait rien
@@ -104,7 +117,7 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
                 }
             }
         }
-    }
+    };
 
     $(document).ready(function() {
         var actionGame = document.getElementById("actionGame");
@@ -115,6 +128,28 @@ $css = "<link href=\"public/css/game.css\" rel=\"stylesheet\" />";
         document.getElementById("myForm").action += "<?= $data['code'] ?>";
         document.getElementById("connect").innerHTML = "<a> Code : " + "<?= $data['code'] ?>" + "</a>";
         document.getElementById("connect").classList.remove("connectHover");
+
+        window.addEventListener('beforeunload', function(event) {
+            // if (myData.nbUsers <= 1) {
+            //     var reqDelete = new XMLHttpRequest();
+            //     reqDelete.open("POST", "delete-game/<?= $data['code'] ?>");
+            //     reqDelete.send();
+            // } else {
+            //     for (var i = 0; i < myData.nbUsers; i++) {
+            //         if (myData.users[i]["isHost"] == 1 && idPlayer == myData.users[i]["idPlayer"]) {
+            //             var reqHost = new XMLHttpRequest();
+            //             reqHost.open("POST", "new-host/<?= $data['code'] ?>");
+            //             reqHost.send();
+            //             break;
+            //         }
+            //     }
+            // }
+
+            // var reqLeave = new XMLHttpRequest();
+            // reqLeave.open("POST", "delete-player/<?= $_SESSION["idPlayer"] ?>/<?= $data['code'] ?>");
+            // reqLeave.send();
+        });
+
         myData.init();
     });
 </script>

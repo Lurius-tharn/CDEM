@@ -183,4 +183,31 @@ class GameController
     $view = new View("game");
     $view->generate($myGame);
   }
+
+  public function deletePlayer($params)
+  {
+    if (isset($params[0]) and !empty($params[0]) and isset($params[1]) and !empty($params[1])) {
+      $Player = new Player();
+      $Player->deletePlayer($params[0], $params[1]);
+    }
+  }
+
+  public function deleteGame($params)
+  {
+    if (isset($params[0]) and !empty($params[0])) {
+      require_once('model/game.php');
+      $Game = new Game();
+      $Game->deleteGame($params[0]);
+    }
+  }
+
+  // Sélection d'un nouvel hôte
+  public function newHost($params)
+  {
+    if (isset($params[0]) and !empty($params[0])) {
+      require_once('model/game.php');
+      $Game = new Game();
+      $Game->newHost($params[0]);
+    }
+  }
 }
