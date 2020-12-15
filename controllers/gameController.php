@@ -15,7 +15,7 @@ class GameController
     $this->isUsername($username);
     $username = $username[0];
     setcookie('username', $username, time() + 365 * 24 * 3600, '/', null, false, true);
-
+    $_SESSION['username'] = $username;
     $view = new View("createGame");
     $view->generate(null);
   }
@@ -26,6 +26,7 @@ class GameController
     $this->isUsername($username);
     $username = $username[0];
     setcookie('username', $username, time() + 365 * 24 * 3600, '/', null, false, true);
+    $_SESSION['username'] = $username;
 
     $view = new View("joinGame");
     $view->generate(null);
@@ -213,6 +214,26 @@ class GameController
     $Game = new Game();
     if (isset($code[0]) and !empty($code[0])) {
       echo $Game->isInProgress($code[0]);
+    }
+  }
+
+  public function upMiniGame($params)
+  {
+    require_once('model/game.php');
+    $Game = new Game();
+    if (isset($params[0]) and !empty($params[0]) and isset($params[1]) and !empty($params[1])) {
+      echo $Game->upMiniGame($params[0], $params[1]);
+    }
+  }
+
+  public function getCurrentMG($code)
+  {
+    require_once('model/game.php');
+    $Game = new Game();
+    if (isset($code[0]) and !empty($code[0])) {
+      $result = $Game->getCurrentMG($code[0]);
+      $json = json_encode($result);
+      echo $json;
     }
   }
 
