@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 14 déc. 2020 à 19:52
+-- Généré le : mar. 15 déc. 2020 à 02:27
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS `game` (
   `scoreMax` int(11) NOT NULL,
   `isInProgress` tinyint(1) NOT NULL,
   `isPublic` tinyint(1) NOT NULL,
+  `currentNum` int(11) NOT NULL,
+  `currentID` int(11) DEFAULT NULL,
   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -49,15 +51,17 @@ CREATE TABLE IF NOT EXISTS `minigame` (
   `name` varchar(255) NOT NULL,
   `timeMax` time NOT NULL,
   PRIMARY KEY (`idMinigame`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `minigame`
 --
 
 INSERT INTO `minigame` (`idMinigame`, `name`, `timeMax`) VALUES
-(1, 'Press the key', '00:00:00'),
-(2, 'Clicker', '00:01:00');
+(1, 'Clicker', '00:00:45'),
+(2, 'Spammer', '00:00:45'),
+(3, 'Taupe', '00:00:45'),
+(4, 'Calculation', '00:01:00');
 
 -- --------------------------------------------------------
 
@@ -73,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `play` (
   `username` varchar(255) NOT NULL,
   `isHost` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPlay`)
-) ENGINE=InnoDB AUTO_INCREMENT=978 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1132 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -105,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `play_minigame` (
   `endDate` timestamp NULL DEFAULT NULL,
   `num` int(11) NOT NULL,
   PRIMARY KEY (`idPlayMinigame`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
