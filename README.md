@@ -24,7 +24,7 @@ Ce qu'il est requis pour commencer avec votre projet...
 * Placer le contenu du dossier télécharger dans le répertoire ``<unRepertoire>/Wamp64/www/``.
 * Importer la base de donnée ``CDEM/db/cdem_database.sql`` dans PHPMyAdmin.
 * Démarrer le serveur Wamp.
-* Ouvrer votre navigateur est rendez-vous à l'adresse : ``localhost/cdem/``.
+* Ouvrer votre navigateur et rendez-vous à l'adresse : ``localhost/cdem/``.
 
 ## Fabriqué avec
 
